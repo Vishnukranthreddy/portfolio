@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education | Talla Vishnu Kranth Reddy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body and Global Styles */
+body {
+    font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+}
+
+ul {
+    list-style-type: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* Header Styles */
+header {
+    background: linear-gradient(135deg, #333 0%, #222 100%);
+    color: white;
+    padding: 40px 0 20px;
+    position: relative;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, #ff6347, #ff8c42, #ffb347);
+}
+
+header h1 {
+    font-size: 3em;
+    text-align: center;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+header p {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 1.2em;
+    opacity: 0.9;
+}
+
+#role {
+    display: inline-block;
+    font-weight: 600;
+    color: #ff6347;
+    position: relative;
+    padding: 0 5px;
+}
+
+@keyframes glassOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    20% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    80% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Navigation Menu */
+nav {
+    margin-top: 30px;
+    padding: 10px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+nav ul li {
+    margin: 0 20px;
+    position: relative;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+    font-weight: 500;
+    padding: 8px 0;
+    position: relative;
+    display: inline-block;
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #ff6347;
+    transition: width 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #ff6347;
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+/* Section Styles */
+section {
+    padding: 80px 20px;
+    text-align: center;
+    position: relative;
+}
+
+section h2 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 15px;
+}
+
+section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #ff6347, #ff8c42);
+    border-radius: 2px;
+}
+
+.container {
+    width: 85%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Section Backgrounds */
+section:nth-child(odd) {
+    background-color: #fff;
+}
+
+section:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+/* Education Section */
+#education {
+    background-color: #fff;
+}
+
+#education ul {
+    text-align: left;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+#education ul li {
+    margin-bottom: 15px;
+    font-size: 1.1em;
+    position: relative;
+    padding-left: 25px;
+}
+
+#education ul li:before {
+    content: '•';
+    color: #ff6347;
+    font-size: 1.5em;
+    position: absolute;
+    left: 0;
+    top: -5px;
+}
+
+/* Footer Styles */
+footer {
+    background: linear-gradient(135deg, #ff6347 0%, #ff8c42 100%);
+    color: white;
+    text-align: center;
+    padding: 30px 0;
+    position: relative;
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
+}
+
+footer p {
+    font-size: 1em;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+footer .social-links {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+footer .social-links a {
+    color: white;
+    font-size: 1.2em;
+    transition: all 0.3s ease;
+}
+
+footer .social-links a:hover {
+    transform: translateY(-3px);
+    text-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
+    .container {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    header h1 {
+        font-size: 2.5em;
+    }
+    
+    section h2 {
+        font-size: 2em;
+    }
+    
+    nav ul li {
+        margin: 0 10px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    header {
+        padding: 30px 0 15px;
+    }
+    
+    header h1 {
+        font-size: 2em;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    nav ul li {
+        margin: 5px 0;
+    }
+    
+    section {
+        padding: 50px 15px;
+    }
+    
+    section h2 {
+        font-size: 1.8em;
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <h1>Talla Vishnu Kranth Reddy</h1>
+            <p>I am a <span id="role">Web Developer</span></p>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="skills.html">Skills</a></li>
+                    <li><a href="work.html">Work</a></li>
+                    <li><a href="experience.html">Experience</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                    <li><a href="contactus.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Education Section -->
+    <section id="education">
+        <div class="container">
+            <h2>Education</h2>
+            <ul>
+                <li>Degree: [Degree Name] - University Name (Year - Year)</li>
+                <li>Degree: [Degree Name] - University Name (Year - Year)</li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Talla Vishnu Kranth Reddy. All Rights Reserved.</p>
+        <div class="social-links">
+            <a href="https://github.com/Vishnukranthreddy" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+            <a href="https://www.linkedin.com/in/tallavishnukranthreddy" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            <a href="mailto:vishnukranthreddy13698@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        const roles = ["Web Developer", "Freelancer", "Problem Solver", "ML Enthusiast", "Data Analyst"];
+        let currentRoleIndex = 0;
+        const roleElement = document.getElementById("role");
+        
+        function changeRole() {
+            roleElement.style.animation = 'none';
+            roleElement.offsetHeight; // Trigger reflow
+            roleElement.style.animation = 'glassOut 15s ease-in-out forwards';
+            roleElement.textContent = roles[currentRoleIndex];
+            currentRoleIndex = (currentRoleIndex + 1) % roles.length;
+        }
+        
+        setInterval(changeRole, 3000);
+        changeRole();
+    </script>
+</body>
+</html>
