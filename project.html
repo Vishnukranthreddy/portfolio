@@ -27,6 +27,15 @@
         transition: all 0.3s ease;
     }
 
+    ul {
+        list-style-type: none;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-weight: 700;
+        line-height: 1.2;
+    }
+
     img {
         max-width: 100%;
         display: block;
@@ -64,6 +73,33 @@
         margin-top: 10px;
         font-size: 1.2em;
         opacity: 0.9;
+    }
+
+    #role {
+        display: inline-block;
+        font-weight: 600;
+        color: #ff6347;
+        position: relative;
+        padding: 0 5px;
+    }
+
+    @keyframes glassOut {
+        0% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        20% {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        80% {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
     /* Navigation Menu */
@@ -146,43 +182,90 @@
         margin: 0 auto;
     }
 
-    /* Project Details */
-    .project-images {
+    /* Section Backgrounds */
+    section:nth-child(odd) {
+        background-color: #fff;
+    }
+
+    section:nth-child(even) {
+        background-color: #f8f9fa;
+    }
+
+    /* Project Cards */
+    .project-cards {
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 30px;
         margin-top: 30px;
     }
 
-    .project-images img {
-        max-width: 45%;
-        height: auto;
-        border-radius: 8px;
+    .project-card {
+        background-color: white;
+        padding: 20px;
+        border-radius: 12px;
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        transition: all 0.5s ease;
+        width: 30%; /* Adjusted for 3 cards in one row */
+        margin-bottom: 30px;
+        text-align: center;
+        transition: all 0.3s ease;
+        overflow: hidden;
+        position: relative;
     }
 
-    .project-images img:hover {
-        transform: scale(1.05);
+    .project-card:hover {
+        transform: translateY(-10px);
         box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
     }
 
-    /* Features List */
-    ul {
-        list-style-type: none;
+    .project-card img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 8px;
+        transition: all 0.5s ease;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .project-card:hover img {
+        transform: scale(1.05);
+    }
+
+    .project-card h3 {
         margin-top: 20px;
+        font-size: 1.5em;
+        color: #333;
+        position: relative;
+        padding-bottom: 10px;
     }
 
-    ul li {
-        font-size: 1.1em;
-        margin-bottom: 10px;
+    .project-card h3:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50px;
+        height: 3px;
+        background-color: #ff6347;
+        transition: width 0.3s ease;
     }
 
-    /* Project Links */
-    .project-link {
+    .project-card:hover h3:after {
+        width: 100px;
+    }
+
+    .project-card p {
+        margin: 15px 0;
+        color: #666;
+        line-height: 1.6;
+    }
+
+    .project-card a {
         color: #fff;
         text-decoration: none;
         font-weight: bold;
-        margin-top: 30px;
+        margin-top: 15px;
         display: inline-block;
         background-color: #333;
         padding: 10px 20px;
@@ -193,7 +276,7 @@
         z-index: 1;
     }
 
-    .project-link:before {
+    .project-card a:before {
         content: '';
         position: absolute;
         top: 0;
@@ -205,11 +288,79 @@
         z-index: -1;
     }
 
-    .project-link:hover {
+    .project-card a:hover {
         color: #fff;
     }
 
-    .project-link:hover:before {
+    .project-card a:hover:before {
+        width: 100%;
+    }
+
+    /* Contact Section */
+    #contact {
+        background-color: #fff;
+    }
+
+    #contact p {
+        font-size: 1.2em;
+        margin-bottom: 20px;
+        text-align: left;
+    }
+
+    #contact .container {
+        position: relative;
+        overflow: hidden;
+        padding-bottom: 20px;
+    }
+
+    #contact .container::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    #contact h2 {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    /* Download Button */
+    .download-button {
+        display: inline-block;
+        padding: 12px 30px;
+        background: linear-gradient(135deg, #333 0%, #222 100%);
+        color: white;
+        text-decoration: none;
+        font-size: 1.1em;
+        font-weight: 600;
+        border-radius: 50px;
+        text-align: center;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+    .download-button:hover {
+        background: linear-gradient(135deg, #555 0%, #444 100%);
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+        transform: translateY(-3px);
+        color: white;
+    }
+
+    .download-button:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 100%;
+        background: linear-gradient(90deg, #ff6347, #ff8c42);
+        transition: all 0.4s ease;
+        z-index: -1;
+        border-radius: 50px;
+    }
+
+    .download-button:hover:before {
         width: 100%;
     }
 
@@ -252,29 +403,38 @@
         .container {
             width: 90%;
         }
+
+        .project-card {
+            width: 47%; /* Adjust width for smaller screens */
+        }
     }
 
     @media screen and (max-width: 768px) {
         header h1 {
             font-size: 2.5em;
         }
-
+        
         section h2 {
             font-size: 2em;
         }
-
+        
         nav ul li {
             margin: 0 10px;
         }
 
-        .project-images {
-            flex-direction: column;
-            align-items: center;
+        .project-cards {
+            gap: 20px;
         }
 
-        .project-images img {
-            max-width: 80%;
-            margin-bottom: 20px;
+        .project-card {
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .project-card img {
+            height: 220px;
         }
     }
 
@@ -303,6 +463,10 @@
         section h2 {
             font-size: 1.8em;
         }
+
+        .project-card img {
+            height: 180px;
+        }
     }
     </style>
 </head>
@@ -311,8 +475,8 @@
     <!-- Header Section -->
     <header>
         <div class="container">
-            <h1>Your Name</h1>
-            <p>Web Developer</p>
+            <h1>Talla Vishnu Kranth Reddy</h1>
+            <p>I am a <span id="role">Web Developer</span></p>
             <nav>
                 <ul>
                     <li><a href="index.html">Home</a></li>
@@ -329,45 +493,73 @@
     </header>
 
     <!-- Project Section -->
-    <section id="project-details">
+    <section id="projects">
         <div class="container">
-            <h2>Project 1: Project Title</h2>
-            <p>Detailed description of the project. Discuss the tools, technologies used, the problem it solves, and any challenges faced during development.</p>
+            <h2>Projects</h2>
+            <div class="project-cards">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <img src="project1.jpg" alt="Project 1">
+                    <h3>Project Title 1</h3>
+                    <p>Short description of the project 1.</p>
+                    <a href="project1-link" target="_blank">View Project</a>
+                </div>
 
-            <!-- Showcase images of the project -->
-            <div class="project-images">
-                <img src="project1-img1.jpg" alt="Project Image 1">
-                <img src="project1-img2.jpg" alt="Project Image 2">
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <img src="project2.jpg" alt="Project 2">
+                    <h3>Project Title 2</h3>
+                    <p>Short description of the project 2.</p>
+                    <a href="project2-link" target="_blank">View Project</a>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <img src="project3.jpg" alt="Project 3">
+                    <h3>Project Title 3</h3>
+                    <p>Short description of the project 3.</p>
+                    <a href="project3-link" target="_blank">View Project</a>
+                </div>
             </div>
+        </div>
+    </section>
 
-            <!-- Project Features -->
-            <h3>Project Features</h3>
-            <ul>
-                <li>Feature 1: Description of the feature</li>
-                <li>Feature 2: Description of the feature</li>
-                <li>Feature 3: Description of the feature</li>
-            </ul>
-
-            <!-- Links to Live Project or Repository -->
-            <p><a href="https://github.com/yourrepo/project-link" target="_blank" class="project-link">View on GitHub</a></p>
-
-            <!-- Client Feedback (optional) -->
-            <h3>Client Feedback</h3>
-            <p>Client: [Client Name]</p>
-            <p>Feedback: [Client Feedback]</p>
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2>Contact</h2>
+            <p>Feel free to reach out to me via email or LinkedIn.</p>
+            <p>Want to know more about my skills and experience? Download my resume to get a detailed overview of my journey!</p>
+            <a href="resume.pdf" download="TallaVishnuKranthReddy_Resume.pdf" class="download-button">Download Resume</a>
         </div>
     </section>
 
     <!-- Footer Section -->
     <footer>
-        <p>&copy; 2025 Your Name. All Rights Reserved.</p>
+        <p>&copy; 2025 Talla Vishnu Kranth Reddy. All Rights Reserved.</p>
         <div class="social-links">
-            <a href="https://github.com/yourgithubprofile" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-            <a href="https://www.linkedin.com/in/yourlinkedinprofile" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-            <a href="mailto:your-email@example.com"><i class="fas fa-envelope"></i> Email</a>
+            <a href="https://github.com/Vishnukranthreddy" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+            <a href="https://www.linkedin.com/in/tallavishnukranthreddy" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            <a href="mailto:vishnukranthreddy13698@gmail.com"><i class="fas fa-envelope"></i> Email</a>
         </div>
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        const roles = ["Web Developer", "Freelancer", "Problem Solver", "ML Enthusiast", "Data Analyst"];
+        let currentRoleIndex = 0;
+        const roleElement = document.getElementById("role");
+        
+        function changeRole() {
+            roleElement.style.animation = 'none';
+            roleElement.offsetHeight; // Trigger reflow
+            roleElement.style.animation = 'glassOut 15s ease-in-out forwards';
+            roleElement.textContent = roles[currentRoleIndex];
+            currentRoleIndex = (currentRoleIndex + 1) % roles.length;
+        }
+        
+        // Initial call
+        setInterval(changeRole, 3000);
+    </script>
 </body>
 </html>
