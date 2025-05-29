@@ -29,20 +29,16 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
-      - name: Set source directory
-        run: |
-          echo "source: ." >> _config_build.yml
-          echo "destination: ./_site" >> _config_build.yml
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
           source: ./
           destination: ./_site
           config: _config.yml,_config_build.yml
+          verbose: true
+          verbose: true
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./_site
 
   # Deployment job
   deploy:
