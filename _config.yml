@@ -4,4 +4,4 @@ description: Personal portfolio website showcasing my skills, education, work, a
 baseurl: "/portfolio"
 url: "https://vishnukranthreddy.github.io"
 source: .
-destination: ./docs/_site
+destination: ./_site

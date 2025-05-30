@@ -33,12 +33,12 @@ jobs:
         uses: actions/jekyll-build-pages@v1
         with:
           source: ./
-          destination: ./docs/_site
+          destination: ./_site
           config: _config.yml,_config_build.yml
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./docs/_site
+          path: ./_site
 
   # Deployment job
   deploy:
