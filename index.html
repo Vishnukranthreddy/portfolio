@@ -213,9 +213,10 @@ section:nth-child(even) {
 }
 
 /* Project Cards */
+/* Project Cards */
 .project-cards {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-wrap: wrap;
     gap: 30px;
     margin-top: 30px;
@@ -226,7 +227,7 @@ section:nth-child(even) {
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    width: 45%;
+    width: 30%; /* Adjusted for 3 cards in one row */
     margin-bottom: 30px;
     text-align: center;
     transition: all 0.3s ease;
@@ -316,6 +317,7 @@ section:nth-child(even) {
 .project-card a:hover:before {
     width: 100%;
 }
+
 
 /* Contact Section */
 #contact {
@@ -545,41 +547,27 @@ footer .social-links a:hover {
                     <p>Short description of the project.</p>
                     <a href="project-link" target="_blank">View Project</a>
                 </div>
+                
+                <div class="project-card">
+                    <img src="project1.jpg" alt="Project 1">
+                    <h3>Project Title</h3>
+                    <p>Short description of the project.</p>
+                    <a href="project-link" target="_blank">View Project</a>
+                </div>
+
+                <div class="project-card">
+                    <img src="project1.jpg" alt="Project 1">
+                    <h3>Project Title</h3>
+                    <p>Short description of the project.</p>
+                    <a href="project-link" target="_blank">View Project</a>
+                </div>
+
                 <!-- More project cards go here -->
             </div>
         </div>
     </section>
 
-    <div class="container">
-            <h2>Projects</h2>
-            <div class="project-cards">
-                <!-- Example Project -->
-                <div class="project-card">
-                    <img src="project1.jpg" alt="Project 1">
-                    <h3>Project Title</h3>
-                    <p>Short description of the project.</p>
-                    <a href="project-link" target="_blank">View Project</a>
-                </div>
-                <!-- More project cards go here -->
-            </div>
-        </div>
-
-
-        <div class="container">
-            <h2>Projects</h2>
-            <div class="project-cards">
-                <!-- Example Project -->
-                <div class="project-card">
-                    <img src="project1.jpg" alt="Project 1">
-                    <h3>Project Title</h3>
-                    <p>Short description of the project.</p>
-                    <a href="project-link" target="_blank">View Project</a>
-                </div>
-                <!-- More project cards go here -->
-            </div>
-        </div>
-
-
+    <!-- Footer -->
 
     <footer>
         <p>&copy; 2025 Talla Vishnu Kranth Reddy. All Rights Reserved.</p>

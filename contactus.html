@@ -292,6 +292,48 @@ footer .social-links a:hover {
     section h2 {
         font-size: 1.8em;
     }
+
+}
+
+
+/* Download Button */
+.download-button {
+    display: inline-block;
+    padding: 12px 30px;
+    background: linear-gradient(135deg, #333 0%, #222 100%);
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+    font-weight: 600;
+    border-radius: 50px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.download-button:hover {
+    background: linear-gradient(135deg, #555 0%, #444 100%);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+    transform: translateY(-3px);
+    color: white;
+}
+
+.download-button:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #ff6347, #ff8c42);
+    transition: all 0.4s ease;
+    z-index: -1;
+    border-radius: 50px;
+}
+
+.download-button:hover:before {
+    width: 100%;
 }
     </style>
 </head>
@@ -321,6 +363,15 @@ footer .social-links a:hover {
             <p>Email: vishnukranthreddy13698@gmail.com</p>
             <p>LinkedIn: <a href="https://www.linkedin.com/in/tallavishnukranthreddy" target="_blank">linkedin.com/in/tallavishnukranthreddy</a></p>
             <p>Github: <a href="https://github.com/Vishnukranthreddy" target="_blank">github.com/Vishnukranthreddy</a></p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            
+            <p>Want to know more about my skills and experience? Download my resume to get a detailed overview of my journey!</p>
+            <a href="resume.pdf" download="TallaVishnuKranthReddy_Resume.pdf" class="download-button">Download Resume</a>
         </div>
     </section>
 
