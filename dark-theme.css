@@ -1,17 +1,4 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Talla Vishnu Kranth Reddy | Portfolio</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@400;500;600;700&family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="dark-theme.css">
-    <style>
-/* Additional Custom Styles */
+/* General Reset */
 * {
     margin: 0;
     padding: 0;
@@ -314,7 +301,6 @@ section:nth-child(even) {
 }
 
 /* Project Cards */
-/* Project Cards */
 .project-cards {
     display: flex;
     justify-content: space-between;
@@ -324,21 +310,23 @@ section:nth-child(even) {
 }
 
 .project-card {
-    background-color: white;
+    background-color: #222;
     padding: 20px;
     border-radius: 12px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     width: 30%; /* Adjusted for 3 cards in one row */
     margin-bottom: 30px;
     text-align: center;
     transition: all 0.3s ease;
     overflow: hidden;
     position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .project-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 99, 71, 0.3);
 }
 
 .project-card img {
@@ -347,7 +335,7 @@ section:nth-child(even) {
     object-fit: cover;
     border-radius: 8px;
     transition: all 0.5s ease;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .project-card:hover img {
@@ -357,7 +345,7 @@ section:nth-child(even) {
 .project-card h3 {
     margin-top: 20px;
     font-size: 1.5em;
-    color: #333;
+    color: #e0e0e0;
     position: relative;
     padding-bottom: 10px;
 }
@@ -380,7 +368,7 @@ section:nth-child(even) {
 
 .project-card p {
     margin: 15px 0;
-    color: #666;
+    color: #bbb;
     line-height: 1.6;
 }
 
@@ -418,7 +406,6 @@ section:nth-child(even) {
 .project-card a:hover:before {
     width: 100%;
 }
-
 
 /* Contact Section */
 #contact {
@@ -462,6 +449,69 @@ section:nth-child(even) {
 #contact h2 {
     text-align: center;
     margin-bottom: 40px;
+}
+
+/* Form Styles */
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #e0e0e0;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1em;
+    transition: all 0.3s ease;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: #ff6347;
+    box-shadow: 0 0 10px rgba(255, 99, 71, 0.3);
+}
+
+textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+button[type="submit"] {
+    display: inline-block;
+    padding: 12px 30px;
+    background: linear-gradient(135deg, #222 0%, #111 100%);
+    color: white;
+    border: none;
+    font-size: 1.1em;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 99, 71, 0.3);
+    font-family: 'Montserrat', sans-serif;
+}
+
+button[type="submit"]:hover {
+    background: linear-gradient(135deg, #ff6347 0%, #ff8c42 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
 /* Download Button */
@@ -547,6 +597,186 @@ footer .social-links a:hover {
     text-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
+/* Education & Work Experience */
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 40px auto;
+    text-align: left;
+}
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    background: linear-gradient(to bottom, #ff6347, #ff8c42);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -2px;
+    border-radius: 2px;
+    box-shadow: 0 0 10px rgba(255, 99, 71, 0.3);
+}
+
+.timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    width: 50%;
+    box-sizing: border-box;
+    margin-bottom: 30px;
+}
+
+.timeline-item:nth-child(odd) {
+    left: 0;
+    text-align: right;
+}
+
+.timeline-item:nth-child(even) {
+    left: 50%;
+}
+
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #ff6347;
+    border: 4px solid #333;
+    top: 15px;
+    border-radius: 50%;
+    z-index: 1;
+    box-shadow: 0 0 10px rgba(255, 99, 71, 0.5);
+}
+
+.timeline-item:nth-child(odd)::after {
+    right: -14px;
+}
+
+.timeline-item:nth-child(even)::after {
+    left: -14px;
+}
+
+.timeline-content {
+    padding: 20px;
+    background-color: #222;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.timeline-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 99, 71, 0.3);
+}
+
+.timeline-content h3 {
+    margin-top: 0;
+    color: #e0e0e0;
+    font-size: 1.4em;
+}
+
+.timeline-content h4 {
+    color: #ff6347;
+    margin: 5px 0 10px;
+    font-size: 1.1em;
+}
+
+.timeline-content p {
+    color: #bbb;
+    line-height: 1.6;
+}
+
+.timeline-date {
+    display: inline-block;
+    padding: 5px 15px;
+    background-color: #ff6347;
+    color: white;
+    border-radius: 20px;
+    font-size: 0.9em;
+    font-weight: 600;
+    margin-bottom: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Skills Section */
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.skill-category {
+    background-color: #222;
+    border-radius: 12px;
+    padding: 25px;
+    width: 300px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.skill-category:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 99, 71, 0.3);
+}
+
+.skill-category h3 {
+    color: #e0e0e0;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.skill-category h3:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background-color: #ff6347;
+    border-radius: 2px;
+}
+
+.skill-item {
+    margin-bottom: 15px;
+}
+
+.skill-name {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.skill-name span {
+    color: #e0e0e0;
+    font-weight: 500;
+}
+
+.skill-bar {
+    height: 10px;
+    background-color: #333;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+}
+
+.skill-progress {
+    height: 100%;
+    background: linear-gradient(90deg, #ff6347, #ff8c42);
+    border-radius: 5px;
+    position: relative;
+    transition: width 1s ease;
+}
+
 /* Responsive Design */
 @media screen and (max-width: 1024px) {
     .container {
@@ -563,6 +793,35 @@ footer .social-links a:hover {
     
     .project-card {
         width: 47%;
+    }
+    
+    .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+        left: 0;
+        text-align: left;
+    }
+    
+    .timeline-item:nth-child(odd) {
+        text-align: left;
+    }
+    
+    .timeline-item:nth-child(even) {
+        left: 0;
+    }
+    
+    .timeline::after {
+        left: 31px;
+    }
+    
+    .timeline-item::after {
+        left: 20px;
+    }
+    
+    .timeline-item:nth-child(odd)::after {
+        right: auto;
+        left: 20px;
     }
 }
 
@@ -598,6 +857,11 @@ footer .social-links a:hover {
     
     .project-card img {
         height: 220px;
+    }
+    
+    .skill-category {
+        width: 100%;
+        max-width: 400px;
     }
 }
 
@@ -635,120 +899,27 @@ footer .social-links a:hover {
     }
     
     section {
-        padding: 50px 15px;
+        padding: 60px 15px;
     }
     
     section h2 {
         font-size: 1.8em;
     }
     
-    .project-card img {
-        height: 180px;
+    .timeline-content {
+        padding: 15px;
+    }
+    
+    .timeline-content h3 {
+        font-size: 1.2em;
+    }
+    
+    .timeline-content h4 {
+        font-size: 1em;
+    }
+    
+    .download-button {
+        padding: 12px 25px;
+        font-size: 1em;
     }
 }
-    </style>
-</head>
-<body>
-    <!-- Header Section -->
-    <header>
-        <div class="container">
-            <h1>Talla Vishnu Kranth Reddy</h1>
-            <p>I am a <span id="role">Web Developer</span></p>
-            <nav>
-                <ul>
-                    <li><a href="about.html">About Me</a></li>
-                    <li><a href="work.html">Work Experience</a></li>
-                    <li><a href="project.html">Projects</a></li>
-                    <li><a href="education.html">Education</a></li>
-                    <li><a href="skills.html">Skills</a></li>
-                    <li><a href="contactus.html">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Home Section -->
-    <section id="home">
-        <div class="container">
-            <h2>Welcome to My Portfolio</h2>
-            <p>Explore my skills, education, work, and experience in detail.</p>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <h2>About Me</h2>
-            <p>I am a passionate Software Developer with experience in Web Development and Application Design. I specialize in creating responsive, user-friendly applications with modern technologies.</p>
-        </div>
-        <!-- Contact Section -->
-   
-        <div class="container">
-            <p>Want to know more about my skills and experience? Download my resume to get a detailed overview of my journey!</p>
-            <a href="resume.pdf" download="TallaVishnuKranthReddy_Resume.pdf" class="download-button">Download Resume</a>
-        </div>
-    </section>
-        
-
-    <!-- Projects Section -->
-    <section id="projects">
-        <div class="container">
-            <h2>Projects</h2>
-            <div class="project-cards">
-                <!-- Example Project -->
-                <div class="project-card">
-                    <img src="project1.jpg" alt="Project 1">
-                    <h3>Project Title</h3>
-                    <p>Short description of the project.</p>
-                    <a href="project-link" target="_blank">View Project</a>
-                </div>
-
-                <div class="project-card">
-                    <img src="project2.jpg" alt="Project 2">
-                    <h3>Project Title</h3>
-                    <p>Short description of the project.</p>
-                    <a href="project-link" target="_blank">View Project</a>
-                </div>
-
-                <div class="project-card">
-                    <img src="project3.jpg" alt="Project 3">
-                    <h3>Project Title</h3>
-                    <p>Short description of the project.</p>
-                    <a href="project-link" target="_blank">View Project</a>
-                </div>
-
-                <!-- More project cards go here -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-
-    <footer>
-        <p>&copy; 2025 Talla Vishnu Kranth Reddy. All Rights Reserved.</p>
-        <div class="social-links">
-            <a href="https://github.com/Vishnukranthreddy" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-            <a href="https://www.linkedin.com/in/tallavishnukranthreddy" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-            <a href="mailto:vishnukranthreddy13698@gmail.com"><i class="fas fa-envelope"></i> Email</a>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
-    <script>
-        const roles = ["Web Developer", "Freelancer", "Problem Solver", "ML Enthusiast", "Data Analyst"];
-        let currentRoleIndex = 0;
-        const roleElement = document.getElementById("role");
-        
-        function changeRole() {
-            roleElement.style.animation = 'none';
-            roleElement.offsetHeight; // Trigger reflow
-            roleElement.style.animation = 'glassOut 15s ease-in-out forwards';
-            roleElement.textContent = roles[currentRoleIndex];
-            currentRoleIndex = (currentRoleIndex + 1) % roles.length;
-        }
-        
-        setInterval(changeRole, 3000);
-        changeRole();
-    </script>
-</body>
-</html>
