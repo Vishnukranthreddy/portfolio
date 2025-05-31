@@ -90,7 +90,7 @@
             content: '';
             position: absolute;
             top: 0;
-            left: 20px;
+            left: 20px; /* Fixed position for the line */
             width: 2px;
             height: 100%;
             background-color: #ff6347;
@@ -124,16 +124,17 @@
         }
 
         /* Timeline dots */
-        .timeline-item::before {
-            content: '';
+        .timeline-dot {
             position: absolute;
             top: 5px;
-            left: 11px;
+            left: 11px; /* Position to center the dot on the line */
             width: 20px;
             height: 20px;
             background-color: #ff6347;
             border-radius: 50%;
             z-index: 1;
+            box-shadow: 0 0 0 4px rgba(255, 99, 71, 0.2);
+            display: block;
         }
 
         /* Timeline Animation */
@@ -205,6 +206,7 @@
 
             <div id="timeline">
                 <div class="timeline-item">
+                    <span class="timeline-dot"></span>
                     <div>
                         <h3>Indian Institute of Information Technology, Raichur (IIIT Raichur)</h3>
                         <p>Bachelor of Technology(BTech) in Computer Science and Engineering</p>
@@ -212,6 +214,7 @@
                     </div>
                 </div>
                 <div class="timeline-item">
+                    <span class="timeline-dot"></span>
                     <div>
                         <h3>Sri Chaitanya Junior College, Vijayawada</h3>
                         <p>Intermediate(MPC)</p>
@@ -219,6 +222,7 @@
                     </div>
                 </div>
                 <div class="timeline-item">
+                    <span class="timeline-dot"></span>
                     <div>
                         <h3>Dr. KKR's Gowtham Concept School</h3>
                         <p>10th</p>
