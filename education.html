@@ -3,200 +3,185 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Education | Talla Vishnu Kranth Reddy</title>
+    <title>Work Experience | Talla Vishnu Kranth Reddy</title>
     <link rel="stylesheet" href="dark-theme.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-/* General Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-/* Body and Global Styles */
-body {
-    font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
-    background-color: #f8f9fa;
-    color: #333;
-    line-height: 1.6;
-}
+        /* Body and Global Styles */
+        body {
+            font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
 
-a {
-    text-decoration: none;
-    color: inherit;
-    transition: all 0.3s ease;
-}
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
 
-ul {
-    list-style-type: none;
-}
+        ul {
+            list-style-type: none;
+        }
 
-h1, h2, h3, h4, h5, h6 {
-    font-weight: 700;
-    line-height: 1.2;
-}
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            line-height: 1.2;
+        }
 
-img {
-    max-width: 100%;
-    display: block;
-}
+        img {
+            max-width: 100%;
+            display: block;
+        }
 
 
-/* Section Styles */
-section {
-    padding: 80px 20px;
-    text-align: center;
-    position: relative;
-}
+        /* Section Styles */
+        section {
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+        }
 
-section h2 {
-    font-size: 2.5em;
-    margin-bottom: 30px;
-    position: relative;
-    display: inline-block;
-    padding-bottom: 15px;
-}
+        section h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
 
-section h2::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 4px;
-    background: linear-gradient(90deg, #ff6347, #ff8c42);
-    border-radius: 2px;
-}
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6347, #ff8c42);
+            border-radius: 2px;
+        }
 
-.container {
-    width: 85%;
-    max-width: 1200px;
-    margin: 0 auto;
-}
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-/* Section Backgrounds */
-section:nth-child(odd) {
-    background-color: #fff;
-}
+        /* Timeline Styles */
+        #timeline {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 20px 0;
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Timeline vertical line */
+        #timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 20px;
+            width: 2px;
+            height: 100%;
+            background-color: #ff6347;
+        }
 
-section:nth-child(even) {
-    background-color: #f8f9fa;
-}
+        .timeline-item {
+            display: flex;
+            width: 100%;
+            margin: 30px 0;
+            position: relative;
+            padding-left: 60px;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 1s ease-out forwards;
+            animation-delay: 0.5s;
+            text-align: left;
+        }
 
-/* Education Section */
-#education {
-    background-color: #fff;
-}
+        .timeline-item:nth-child(odd) {
+            animation-delay: 0.7s;
+        }
 
-#education ul {
-    text-align: left;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-}
+        .timeline-item h3 {
+            margin-bottom: 10px;
+            font-size: 1.5em;
+        }
 
-#education ul li {
-    margin-bottom: 15px;
-    font-size: 1.1em;
-    position: relative;
-    padding-left: 25px;
-}
+        .timeline-item p {
+            font-size: 1.2em;
+            color: #666;
+        }
 
-#education ul li:before {
-    content: '•';
-    color: #ff6347;
-    font-size: 1.5em;
-    position: absolute;
-    left: 0;
-    top: -5px;
-}
+        /* Timeline dots */
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 11px;
+            width: 20px;
+            height: 20px;
+            background-color: #ff6347;
+            border-radius: 50%;
+            z-index: 1;
+        }
 
-/* Footer Styles */
-footer {
-    background: linear-gradient(135deg, #ff6347 0%, #ff8c42 100%);
-    color: white;
-    text-align: center;
-    padding: 30px 0;
-    position: relative;
-    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
-}
+        /* Timeline Animation */
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-footer p {
-    font-size: 1em;
-    font-weight: 500;
-    letter-spacing: 0.5px;
-}
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            header h1 {
+                font-size: 2.5em;
+            }
 
-footer .social-links {
-    margin-top: 15px;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
+            section h2 {
+                font-size: 2em;
+            }
 
-footer .social-links a {
-    color: white;
-    font-size: 1.2em;
-    transition: all 0.3s ease;
-}
+            nav ul li {
+                margin: 0 10px;
+            }
+        }
 
-footer .social-links a:hover {
-    transform: translateY(-3px);
-    text-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-}
+        @media screen and (max-width: 480px) {
+            header {
+                padding: 30px 0 15px;
+            }
 
-/* Responsive Design */
-@media screen and (max-width: 1024px) {
-    .container {
-        width: 90%;
-    }
-}
+            header h1 {
+                font-size: 2em;
+            }
 
-@media screen and (max-width: 768px) {
-    header h1 {
-        font-size: 2.5em;
-    }
-    
-    section h2 {
-        font-size: 2em;
-    }
-    
-    nav ul li {
-        margin: 0 10px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    header {
-        padding: 30px 0 15px;
-    }
-    
-    header h1 {
-        font-size: 2em;
-    }
-    
-    nav ul {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    nav ul li {
-        margin: 5px 0;
-    }
-    
-    section {
-        padding: 50px 15px;
-    }
-    
-    section h2 {
-        font-size: 1.8em;
-    }
-}
+            section h2 {
+                font-size: 1.8em;
+            }
+        }
     </style>
 </head>
 <body>
+
     <!-- Header Section -->
     <header>
         <div class="container">
@@ -206,8 +191,8 @@ footer .social-links a:hover {
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About Me</a></li>
-                    <li><a href="work.html">Work Experience</a></li>
                     <li><a href="project.html">Projects</a></li>
+                    <li><a href="education.html">Education</a></li>
                     <li><a href="skills.html">Skills</a></li>
                     <li><a href="contactus.html">Contact</a></li>
                 </ul>
@@ -215,14 +200,25 @@ footer .social-links a:hover {
         </div>
     </header>
 
-    <!-- Education Section -->
-    <section id="education">
+    <!-- Work Experience Section -->
+    <section id="work">
         <div class="container">
             <h2>Education</h2>
-            <ul>
-                <li>Degree: [Degree Name] - University Name (Year - Year)</li>
-                <li>Degree: [Degree Name] - University Name (Year - Year)</li>
-            </ul>
+
+            <div id="timeline">
+                <div class="timeline-item">
+                    <div>
+                        <h3>Indian Institute of Information Technology, Raichur (IIIT Raichur)</h3>
+                        <p>Bachelor of Technology (BTech) in Computer Science and Engineering (2022 - Present)</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div>
+                        <h3>Sri Chaitanya Junior College, Vijayawada</h3>
+                        <p>MPC (2020 - 2022)</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -236,21 +232,5 @@ footer .social-links a:hover {
     </footer>
 
     <script src="script.js"></script>
-    <script>
-        const roles = ["Web Developer", "Freelancer", "Problem Solver", "ML Enthusiast", "Data Analyst"];
-        let currentRoleIndex = 0;
-        const roleElement = document.getElementById("role");
-        
-        function changeRole() {
-            roleElement.style.animation = 'none';
-            roleElement.offsetHeight; // Trigger reflow
-            roleElement.style.animation = 'glassOut 15s ease-in-out forwards';
-            roleElement.textContent = roles[currentRoleIndex];
-            currentRoleIndex = (currentRoleIndex + 1) % roles.length;
-        }
-        
-        setInterval(changeRole, 3000);
-        changeRole();
-    </script>
 </body>
 </html>
