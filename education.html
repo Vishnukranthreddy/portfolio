@@ -40,7 +40,6 @@
             display: block;
         }
 
-
         /* Section Styles */
         section {
             padding: 80px 20px;
@@ -91,13 +90,14 @@
             position: absolute;
             top: 0;
             left: 20px;
-            width: 2px;
+            width: 4px;
             height: 100%;
-            background-color: #ff6347;
+            background: linear-gradient(to bottom, #ff5500, #ff9900);
+            border-radius: 2px;
+            box-shadow: 0 0 10px rgba(255, 85, 0, 0.7);
         }
 
         .timeline-item {
-            display: flex;
             width: 100%;
             margin: 30px 0;
             position: relative;
@@ -116,11 +116,17 @@
         .timeline-item h3 {
             margin-bottom: 10px;
             font-size: 1.5em;
+            color: #e0e0e0;
         }
 
         .timeline-item p {
             font-size: 1.2em;
             color: #bbb;
+            margin-bottom: 8px;
+        }
+
+        .timeline-item p:last-child {
+            margin-bottom: 0;
         }
 
         /* Timeline dots */
@@ -131,9 +137,51 @@
             left: 11px;
             width: 20px;
             height: 20px;
-            background-color: #ff6347;
+            background-color: #ff7700;
             border-radius: 50%;
+            border: 3px solid #000;
             z-index: 1;
+            box-shadow: 0 0 15px rgba(255, 119, 0, 0.6);
+        }
+
+        
+
+        /* Timeline content styling */
+        .timeline-item > div {
+            padding: 20px 25px;
+            background-color: rgb(5, 5, 5);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(255, 85, 0, 0.7);
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+       
+
+        
+        .timeline-item > div:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Dark theme compatibility */
+        body.dark-theme .timeline-item > div {
+            background-color: #111111;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        body.dark-theme .timeline-item > div:hover {
+            border: 1px solid rgba(255, 119, 0, 0.3);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+        
+        body.dark-theme .timeline-item h3 {
+            color: #e0e0e0;
+        }
+        
+        body.dark-theme .timeline-item p {
+            color: #bbb;
         }
 
         /* Timeline Animation */
@@ -161,8 +209,21 @@
             nav ul li {
                 margin: 0 10px;
             }
+            
+            .timeline-item h3 {
+                font-size: 1.3em;
+            }
+            
+            .timeline-item p {
+                font-size: 1.1em;
+            }
+            
+            .timeline-item > div {
+                padding: 18px 20px;
+            }
         }
 
+        /* Mobile Responsive Design */
         @media screen and (max-width: 480px) {
             header {
                 padding: 30px 0 15px;
@@ -174,6 +235,55 @@
 
             section h2 {
                 font-size: 1.8em;
+            }
+            
+            .timeline-item {
+                padding-left: 50px;
+            }
+            
+            .timeline-item::before {
+                left: 10px;
+            }
+            
+            #timeline::before {
+                left: 19px;
+            }
+            
+            .timeline-item > div {
+                padding: 15px;
+            }
+            
+            .timeline-item h3 {
+                font-size: 1.2em;
+            }
+            
+            .timeline-item p {
+                font-size: 1em;
+            }
+        }
+        
+        /* Small Mobile Devices */
+        @media screen and (max-width: 320px) {
+            .timeline-item {
+                padding-left: 45px;
+            }
+            
+            .timeline-item > div {
+                padding: 12px;
+            }
+            
+            .timeline-item h3 {
+                font-size: 1.1em;
+            }
+            
+            #timeline::before {
+                left: 18px;
+            }
+            
+            .timeline-item::before {
+                left: 8px;
+                width: 18px;
+                height: 18px;
             }
         }
     </style>

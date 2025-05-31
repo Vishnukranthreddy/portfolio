@@ -138,9 +138,11 @@
             background-color: #ff7700;
             top: 15px;
             border-radius: 50%;
+            border: 3px solid #000;
             z-index: 1;
-            box-shadow: 0 0 10px rgba(255, 119, 0, 0.6);
+            box-shadow: 0 0 15px rgba(255, 119, 0, 0.6);
         }
+        
         
         .timeline-item:nth-child(odd)::after {
             right: -14px;
@@ -210,8 +212,21 @@
             nav ul li {
                 margin: 0 10px;
             }
+            
+            .timeline-item h3 {
+                font-size: 1.3em;
+            }
+            
+            .timeline-item p {
+                font-size: 1.1em;
+            }
+            
+            .timeline-content {
+                padding: 18px 20px;
+            }
         }
 
+        /* Mobile Responsive Design */
         @media screen and (max-width: 480px) {
             header {
                 padding: 30px 0 15px;
@@ -225,17 +240,18 @@
                 font-size: 1.8em;
             }
             
-            /* Mobile timeline adjustments */
+            /* Mobile timeline adjustments - convert to single column */
             #timeline::before {
                 left: 31px;
+                transform: none;
             }
             
             .timeline-item {
                 width: 100%;
                 padding-left: 70px;
                 padding-right: 25px;
-                left: 0;
-                text-align: left;
+                left: 0 !important;
+                text-align: left !important;
             }
             
             .timeline-item:nth-child(odd) {
@@ -247,18 +263,37 @@
             }
             
             .timeline-item::after {
-                left: 20px;
-            }
-            
-            .timeline-item:nth-child(odd)::after {
-                right: auto;
-                left: 20px;
+                left: 20px !important;
+                right: auto !important;
             }
             
             .timeline-content {
                 padding: 15px;
             }
             
+            .timeline-item h3 {
+                font-size: 1.2em;
+            }
+            
+            .timeline-item p {
+                font-size: 1em;
+            }
+        }
+        
+        /* Small Mobile Devices */
+        @media screen and (max-width: 320px) {
+            .timeline-item {
+                padding-left: 60px;
+                padding-right: 15px;
+            }
+            
+            .timeline-content {
+                padding: 12px;
+            }
+            
+            .timeline-item h3 {
+                font-size: 1.1em;
+            }
         }
     </style>
 </head>
