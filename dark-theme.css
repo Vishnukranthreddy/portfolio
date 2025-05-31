@@ -925,3 +925,15 @@ footer .social-links a:hover {
         font-size: 1em;
     }
 }
+
+.project-links {
+    display: flex;
+    justify-content: space-between; /* Push buttons to left and right */
+    margin-top: 20px;
+}
+
+.project-links a {
+    flex: 1;
+    margin: 0 5px; /* Small space between buttons */
+    text-align: center;
+}
