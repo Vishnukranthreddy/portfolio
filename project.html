@@ -17,8 +17,6 @@
     /* Body and Global Styles */
     body {
         font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
-        background-color: #f8f9fa;
-        color: #333;
         line-height: 1.6;
     }
 
@@ -76,14 +74,7 @@
         margin: 0 auto;
     }
 
-    /* Section Backgrounds */
-    section:nth-child(odd) {
-        background-color: #fff;
-    }
-
-    section:nth-child(even) {
-        background-color: #f8f9fa;
-    }
+    /* Section Backgrounds - using dark theme colors */
 
     /* Project Cards */
     .project-cards {
@@ -95,16 +86,17 @@
     }
 
     .project-card {
-        background-color: white;
+        background-color: #111111;
         padding: 20px;
         border-radius: 12px;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         width: 30%; /* Adjusted for 3 cards in one row */
         margin-bottom: 30px;
         text-align: center;
         transition: all 0.3s ease;
         overflow: hidden;
         position: relative;
+        border: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     .project-card:hover {
@@ -128,7 +120,7 @@
     .project-card h3 {
         margin-top: 20px;
         font-size: 1.5em;
-        color: #333;
+        color: #e0e0e0;
         position: relative;
         padding-bottom: 10px;
     }
@@ -151,7 +143,7 @@
 
     .project-card p {
         margin: 15px 0;
-        color: #666;
+        color: #bbb;
         line-height: 1.6;
     }
 
@@ -205,7 +197,7 @@
 
     /* Contact Section */
     #contact {
-        background-color: #fff;
+        /* Let dark-theme.css handle the background */
     }
 
     #contact p {
