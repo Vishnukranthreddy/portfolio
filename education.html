@@ -209,13 +209,15 @@
                 <div class="timeline-item">
                     <div>
                         <h3>Indian Institute of Information Technology, Raichur (IIIT Raichur)</h3>
-                        <p>Bachelor of Technology (BTech) in Computer Science and Engineering (2022 - Present)</p>
+                        <p>Bachelor of Technology (BTech) in Computer Science and Engineering</p>
+                        <p>(2022 - Present)</p>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div>
                         <h3>Sri Chaitanya Junior College, Vijayawada</h3>
-                        <p>MPC (2020 - 2022)</p>
+                        <p>MPC</p>
+                        <p>(2020 - 2022)</p>
                     </div>
                 </div>
             </div>
@@ -232,5 +234,21 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        const roles = ["Web Developer", "Freelancer", "Problem Solver", "ML Enthusiast", "Data Analyst"];
+        let currentRoleIndex = 0;
+        const roleElement = document.getElementById("role");
+        
+        function changeRole() {
+            roleElement.style.animation = 'none';
+            roleElement.offsetHeight; // Trigger reflow
+            roleElement.style.animation = 'glassOut 15s ease-in-out forwards';
+            roleElement.textContent = roles[currentRoleIndex];
+            currentRoleIndex = (currentRoleIndex + 1) % roles.length;
+        }
+        
+        setInterval(changeRole, 3000);
+        changeRole();
+    </script>
 </body>
 </html>
