@@ -566,6 +566,11 @@ button[type="submit"]:hover {
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
 }
 
+/* Timeline styles have been moved to separate files:
+   - work-timeline.css for work.html
+   - education-timeline.css for education.html
+*/
+
 /* Footer Styles */
 footer {
     background: linear-gradient(135deg, #0f0e0e 0%, #151515 100%);
