@@ -697,34 +697,6 @@ footer .social-links a:hover {
         width: 47%;
     }
     
-    .timeline-item {
-        width: 100%;
-        padding-left: 70px;
-        padding-right: 25px;
-        left: 0;
-        text-align: left;
-    }
-    
-    .timeline-item:nth-child(odd) {
-        text-align: left;
-    }
-    
-    .timeline-item:nth-child(even) {
-        left: 0;
-    }
-    
-    .timeline::after {
-        left: 31px;
-    }
-    
-    .timeline-item::after {
-        left: 20px;
-    }
-    
-    .timeline-item:nth-child(odd)::after {
-        right: auto;
-        left: 20px;
-    }
 }
 
 @media screen and (max-width: 768px) {
