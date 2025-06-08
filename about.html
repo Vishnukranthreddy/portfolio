@@ -135,8 +135,6 @@ section h2::after {
     <!-- Header Section -->
     <header>
         <div class="container">
-            <h1>Talla Vishnu Kranth Reddy</h1>
-            <p>I am a <span id="role">Web Developer</span></p>
             <nav>
                 <ul>
                     <li><a href="index.html">Home</a></li>
@@ -168,21 +166,5 @@ section h2::after {
     </footer>
 
     <script src="script.js"></script>
-    <script>
-        const roles = ["Web Developer", "Freelancer", "Problem Solver", "ML Enthusiast", "Data Analyst"];
-        let currentRoleIndex = 0;
-        const roleElement = document.getElementById("role");
-        
-        function changeRole() {
-            roleElement.style.animation = 'none';
-            roleElement.offsetHeight; // Trigger reflow
-            roleElement.style.animation = 'glassOut 15s ease-in-out forwards';
-            roleElement.textContent = roles[currentRoleIndex];
-            currentRoleIndex = (currentRoleIndex + 1) % roles.length;
-        }
-        
-        setInterval(changeRole, 3000);
-        changeRole();
-    </script>
 </body>
 </html>
