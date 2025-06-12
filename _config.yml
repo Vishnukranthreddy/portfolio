@@ -3,5 +3,3 @@ title: Talla Vishnu Kranth Reddy | Portfolio
 description: Personal portfolio website showcasing my skills, education, work, and experience.
 baseurl: "/portfolio"
 url: "https://vishnukranthreddy.github.io"
-source: .
-destination: ./_site

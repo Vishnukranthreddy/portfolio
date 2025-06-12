@@ -34,7 +34,6 @@ jobs:
         with:
           source: ./
           destination: ./_site
-          config: _config.yml,_config_build.yml
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
