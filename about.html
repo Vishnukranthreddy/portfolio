@@ -73,16 +73,75 @@ section h2::after {
     margin: 0 auto;
 }
 
-/* Section Backgrounds - using dark theme colors */
-/* About Section */
+/* New styles for About section layout */
+#about .about-content {
+    display: flex;
+    flex-direction: row; /* Default to row layout */
+    align-items: center;
+    gap: 50px; /* Space between image and text */
+    margin-top: 40px;
+    text-align: left; /* Align text to the left within its container */
+}
 
-#about p {
-    margin-top: 20px;
+#about .about-image {
+    flex: 1; /* Takes up one part of the available space */
+    display: flex;
+    justify-content: center; /* Center image horizontally */
+    align-items: center; /* Center image vertically */
+}
+
+#about .about-image img {
+    width: 250px; /* Adjust size as needed */
+    height: 250px; /* Adjust size as needed */
+    border-radius: 50%; /* Make image circular */
+    object-fit: cover; /* Cover the area without distortion */
+    border: 5px solid #ff7700; /* Orange border */
+    box-shadow: 0 0 20px rgba(255, 119, 0, 0.6); /* Glow effect */
+    transition: transform 0.3s ease-in-out;
+}
+
+#about .about-image img:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+#about .about-text {
+    flex: 2; /* Takes up two parts of the available space */
+    color: #e0e0e0;
+}
+
+#about .about-text p {
     font-size: 1.2em;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+/* Responsive Design for About Section */
+@media screen and (max-width: 768px) {
+    #about .about-content {
+        flex-direction: column; /* Stack columns vertically on smaller screens */
+        gap: 30px;
+        text-align: center; /* Center text for stacked layout */
+    }
+
+    #about .about-image img {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #about .about-image img {
+        width: 180px;
+        height: 180px;
+    }
+
+    #about .about-text p {
+        font-size: 1em;
+    }
 }
 
 
-/* Responsive Design */
+/* Existing Responsive Design */
 @media screen and (max-width: 1024px) {
     .container {
         width: 90%;
@@ -152,16 +211,87 @@ section h2::after {
     <section id="about">
         <div class="container">
             <h2>About Me</h2>
-            <p>I am a passionate Software Developer with experience in Web Development and Application Design. I specialize in creating responsive, user-friendly applications with modern technologies.</p>
+            <div class="about-content">
+                <div class="about-image">
+                    <!-- Placeholder image - replace with your actual image -->
+                    <img src="https://placehold.co/250x250/000/fff?text=Your+Image" alt="Your Profile Picture">
+                </div>
+                <div class="about-text">
+                    <p>Hello! I'm Talla Vishnu Kranth Reddy, a passionate and driven Software Developer with a strong focus on creating engaging and efficient web applications. My journey in technology began with a deep curiosity for how digital experiences are built, which quickly evolved into a dedication to crafting robust and user-friendly solutions.</p>
+                    <p>I specialize in full-stack web development, with expertise in both front-end technologies like HTML, CSS, and JavaScript, and back-end frameworks. I am constantly exploring new tools and methodologies to enhance my skills and deliver cutting-edge results. My goal is to develop applications that are not only functional and responsive but also provide an intuitive and delightful user experience.</p>
+                    
+                </div>
+            </div>
         </div>
     </section>
 
-    <footer>
-        <p>&copy; 2025 Talla Vishnu Kranth Reddy. All Rights Reserved.</p>
-        <div class="social-links">
-            <a href="https://github.com/Vishnukranthreddy" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-            <a href="https://www.linkedin.com/in/tallavishnukranthreddy" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-            <a href="mailto:vishnukranthreddy13698@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Column 1: Vishnu Kranth's Portfolio -->
+                <div class="footer-column">
+                    <h3>Vishnu Kranth's Portfolio</h3>
+                    <p>Thank you for visiting my personal portfolio website. Connect with me over socials for collaboration and opportunities.</p>
+                    <p>Keep Rising 🚀. Let's connect and build something amazing together!</p>
+                </div>
+
+                <!-- Column 2: Quick Links -->
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="about.html"><i class="fas fa-user"></i> About</a></li>
+                        <li><a href="skills.html"><i class="fas fa-star"></i> Skills</a></li>
+                        <li><a href="education.html"><i class="fas fa-graduation-cap"></i> Education</a></li>
+                        <li><a href="work.html"><i class="fas fa-briefcase"></i> Work</a></li>
+                        <li><a href="project.html"><i class="fas fa-code"></i> Projects</a></li>
+                        <li><a href="contactus.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Contact Info -->
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+91 XXXXX XXXXX</span> <!-- Add your phone number -->
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>vishnukranthreddy13698@gmail.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Your City, State, India</span> <!-- Add your location -->
+                        </div>
+                    </div>
+                    
+                    <!-- Social Media Icons -->
+                    <div class="footer-social-links">
+                        <a href="https://www.linkedin.com/in/tallavishnukranthreddy" target="_blank" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://github.com/Vishnukranthreddy" target="_blank" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" target="_blank" aria-label="Twitter"> <!-- Add your Twitter link -->
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" target="_blank" aria-label="Instagram"> <!-- Add your Instagram link -->
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom Footer Bar -->
+        <div class="footer-bottom">
+            <div class="container">
+                <p> Designed By Talla Vishnu Kranth Reddy</p>
+            </div>
         </div>
     </footer>
 

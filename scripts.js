@@ -10,3 +10,17 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+
+function checkDarkTheme() {
+    const isDarkMode = localStorage.getItem('darkMode') === 'true';
+    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    if (isDarkMode || prefersDarkScheme) {
+        document.body.classList.add('dark-theme');
+    } else {
+        document.body.classList.remove('dark-theme');
+    }
+}
+
+// Run on page load
+checkDarkTheme();
