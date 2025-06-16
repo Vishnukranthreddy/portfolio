@@ -118,6 +118,15 @@
             background-color: #3d0066; /* Darker purple */
         }
 
+        .success-message {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
         /* Responsive Design */
         @media screen and (max-width: 768px) {
             #contact {
@@ -135,17 +144,17 @@
 <body>
 
     <!-- Header Section -->
-        <header>
+    <header>
         <div class="container">
             <nav>
                 <ul>
-                    <li><a href="index.html" data-tooltip="Home"><i class="fas fa-home"></i></a></li>
-                    <li><a href="about.html" data-tooltip="About"><i class="fas fa-user"></i></a></li>
-                    <li><a href="skills.html" data-tooltip="Skills"><i class="fas fa-star"></i></a></li>
-                    <li><a href="education.html" data-tooltip="Education"><i class="fas fa-graduation-cap"></i></a></li>
-                    <li><a href="work.html" class="active" data-tooltip="Experience"><i class="fas fa-briefcase"></i></a></li>
-                    <li><a href="project.html" data-tooltip="Projects"><i class="fas fa-code"></i></a></li>
-                    <li><a href="contactus.html" data-tooltip="Contact"><i class="fas fa-envelope"></i></a></li>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="about.html"><i class="fas fa-user"></i> About</a></li>
+                        <li><a href="skills.html"><i class="fas fa-star"></i> Skills</a></li>
+                        <li><a href="education.html"><i class="fas fa-graduation-cap"></i> Education</a></li>
+                        <li><a href="work.html"><i class="fas fa-briefcase"></i> Experience</a></li>
+                        <li><a href="project.html"><i class="fas fa-code"></i> Projects</a></li>
+                        <li><a href="contactus.html" class="active"><i class="fas fa-envelope"></i> Contact</a></li>
                 </ul>
             </nav>
         </div>
@@ -155,6 +164,9 @@
     <section id="contact">
         <div class="contact-form">
             <h2>Get In Touch</h2>
+            <div class="success-message" id="success-message">
+                Thank you for your message! I'll get back to you soon.
+            </div>
             <form id="contact-form">
                 <label for="name"><i class="fas fa-user"></i> Name</label>
                 <input type="text" id="name" name="name" placeholder="Enter your name" required>
@@ -245,49 +257,21 @@
         </div>
     </footer>
 
-    <!-- EmailJS SDK -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <script type="text/javascript">
-        (function(){
-            emailjs.init("t9tjlOuk0Kp86yMeC"); // Replace with your EmailJS public key
-        })();
-    </script>
-    
     <script>
-        // Contact form submission with EmailJS
+        // Simple form handling without email sending
         document.getElementById('contact-form').addEventListener('submit', function(event) {
             event.preventDefault();
             
-            // Get form data
-            const formData = new FormData(this);
-            const templateParams = {
-                from_name: formData.get('name'),
-                from_email: formData.get('email'),
-                phone: formData.get('phone'),
-                message: formData.get('message')
-            };
+            // Show success message
+            document.getElementById('success-message').style.display = 'block';
             
-            // Show loading state
-            const submitBtn = document.querySelector('.submit-btn');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-            submitBtn.disabled = true;
+            // Clear the form
+            this.reset();
             
-            // Send email using EmailJS
-            emailjs.send('service_h5dkn1f', 'template_p6aftre', templateParams)
-                .then(function(response) {
-                    console.log('SUCCESS!', response.status, response.text);
-                    alert('Message sent successfully!');
-                    document.getElementById('contact-form').reset();
-                }, function(error) {
-                    console.log('FAILED...', error);
-                    alert('Failed to send message. Please try again.');
-                })
-                .finally(function() {
-                    // Reset button state
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.disabled = false;
-                });
+            // Hide success message after 5 seconds
+            setTimeout(function() {
+                document.getElementById('success-message').style.display = 'none';
+            }, 5000);
         });
         
         // WhatsApp button functionality

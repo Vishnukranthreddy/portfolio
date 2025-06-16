@@ -17,7 +17,10 @@
         /* Body and Global Styles */
         body {
             font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+            background-color: #000000;
+            color: #f0f0f0;
             line-height: 1.6;
+            padding-top: 60px;
         }
 
         a {
@@ -295,13 +298,13 @@
         <div class="container">
             <nav>
                 <ul>
-                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-                        <li><a href="about.html"><i class="fas fa-user"></i> About</a></li>
-                        <li><a href="skills.html"><i class="fas fa-star"></i> Skills</a></li>
-                        <li><a href="education.html"><i class="fas fa-graduation-cap"></i> Education</a></li>
-                        <li><a href="work.html"><i class="fas fa-briefcase"></i> Experience</a></li>
-                        <li><a href="project.html"><i class="fas fa-code"></i> Projects</a></li>
-                        <li><a href="contactus.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                    <li><a href="index.html" data-tooltip="Home"><i class="fas fa-home"></i></a></li>
+                    <li><a href="about.html" data-tooltip="About"><i class="fas fa-user"></i></a></li>
+                    <li><a href="skills.html" data-tooltip="Skills"><i class="fas fa-star"></i></a></li>
+                    <li><a href="education.html" class="active" data-tooltip="Education"><i class="fas fa-graduation-cap"></i></a></li>
+                    <li><a href="work.html" data-tooltip="Experience"><i class="fas fa-briefcase"></i></a></li>
+                    <li><a href="project.html" data-tooltip="Projects"><i class="fas fa-code"></i></a></li>
+                    <li><a href="contactus.html" data-tooltip="Contact"><i class="fas fa-envelope"></i></a></li>
                 </ul>
             </nav>
         </div>
