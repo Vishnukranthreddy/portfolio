@@ -37,20 +37,21 @@ img {
 /* Header Styles */
 header {
     padding: 20px 0;
-    background: linear-gradient(135deg, #0a0a0a 0%, #191515 100%);
+    background: #0a0a0a;
     color: white;
     position: fixed; /* Make header fixed */
     top: 0;
     left: 0;
     width: 100%;
     z-index: 1000; /* Ensure it stays on top */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
     display: flex;
     justify-content: flex-end;
     align-items: center;
     padding-left: 20px;
     padding-right: 20px;
     flex-wrap: wrap;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 header::after {
@@ -134,26 +135,28 @@ nav ul li a {
     padding: 8px 18px;
     position: relative;
     display: inline-block;
-    background-color: #000000;
+    background-color: #0a0a0a;
     border-radius: 30px;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 8px hsla(27, 41%, 61%, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     overflow: hidden;
 }
 
 /* Active page indicator */
 nav ul li a.active {
-    background-color: #111111;
-    box-shadow: 0 2px 10px rgba(255, 119, 0, 0.3);
-    border: 1px solid rgba(255, 119, 0, 0.3);
+    background-color: #0a0a0a;
+    box-shadow: 0 2px 10px rgba(255, 119, 0, 0.4);
+    border: 1px solid rgba(255, 119, 0, 0.4);
+    color: #ff7700;
 }
 
 nav ul li a:hover {
     color: #fff;
-    background-color: #ff7700;
+    background-color: #0a0a0a;
     transform: translateY(-2px);
-    box-shadow: 0 3px 10px rgba(255, 119, 0, 0.5);
+    box-shadow: 0 4px 15px rgba(255, 119, 0, 0.6);
+    border: 1px solid rgba(255, 119, 0, 0.6);
 }
 
 nav ul li a::before {
@@ -163,7 +166,7 @@ nav ul li a::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(45deg, #ff5500, #ff9900);
+    background: linear-gradient(45deg, rgba(255, 119, 0, 0.1), rgba(255, 119, 0, 0.2));
     border-radius: 30px;
     opacity: 0;
     z-index: -1;
@@ -291,21 +294,27 @@ section:nth-of-type(even) { /* Targets about */
 
 .hero-content {
     display: flex;
-    justify-content: center; /* Center the hero-center div */
-    align-items: center;
+    justify-content: space-between; /* Distribute space evenly */
+    align-items: center; /* Align items to center vertically */
+    gap: 50px; /* Add gap between left and right sections */
     flex-wrap: wrap;
     margin-top: 20px;
     width: 100%;
+    max-width: 1200px; /* Limit maximum width */
+    margin: 0 auto; /* Center the content horizontally */
 }
 
 .hero-left {
     flex: 1;
     min-width: 300px;
     text-align: left; /* Keep left-aligned for its content */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
 }
 
 .hero-left .greeting {
-    font-size: 1.4em;
+    font-size: 1.5em;
     opacity: 0.9;
     margin-bottom: 10px;
     color: #e0e0e0;
@@ -313,7 +322,7 @@ section:nth-of-type(even) { /* Targets about */
 }
 
 .hero-left h1 {
-    font-size: 1.4em;
+    font-size: 2.35em; /* Increased font size */
     letter-spacing: 2px;
     margin-bottom: 15px;
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
@@ -325,7 +334,7 @@ section:nth-of-type(even) { /* Targets about */
 }
 
 .hero-left .role-text {
-    font-size: 1.4em;
+    font-size: 1.7em;
     opacity: 0.95;
     font-family: 'Raleway', 'Segoe UI', sans-serif;
     letter-spacing: 1px;
@@ -334,7 +343,7 @@ section:nth-of-type(even) { /* Targets about */
 }
 
 .hero-right {
-    flex: 2;
+    flex: 1; /* Changed from flex: 2 to flex: 1 for equal width */
     min-width: 300px;
     display: flex; /* Make hero-right a flex container */
     flex-direction: column; /* Stack its children vertically */
@@ -343,7 +352,7 @@ section:nth-of-type(even) { /* Targets about */
 }
 
 .hero-right .intro-text {
-    font-size: 1.2em;
+    font-size: 1.1em;
     color: #e0e0e0;
     line-height: 1.8;
     margin-bottom: 30px;
@@ -381,21 +390,42 @@ section:nth-of-type(even) { /* Targets about */
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    background-color: #ff7700;
+    background: linear-gradient(135deg, #ff7700, #ff5500);
     color: #ffffff;
-    padding: 12px 25px;
+    padding: 15px 30px;
     border-radius: 30px;
     font-weight: 600;
+    font-size: 1.1em;
     text-decoration: none;
     transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(255, 119, 0, 0.3);
-    margin: 0 auto; /* CENTER THE BUTTON */
+    box-shadow: 0 8px 25px rgba(255, 119, 0, 0.4);
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.download-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.download-button:hover::before {
+    left: 100%;
 }
 
 .download-button:hover {
-    background-color: #ff5500;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(255, 119, 0, 0.4);
+    background: linear-gradient(135deg, #ff5500, #ff3300);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(255, 119, 0, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
 /* About Section */
