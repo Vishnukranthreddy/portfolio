@@ -4,193 +4,214 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Me | Talla Vishnu Kranth Reddy</title>
-    <link rel="stylesheet" href="dark-theme.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@400;500;600;700&family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="dark-theme.css">
     <style>
-/* General Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-/* Body and Global Styles */
-body {
-    font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
-    background-color: #000000;
-    color: #f0f0f0;
-    line-height: 1.6;
-    padding-top: 60px;
-}
+        /* Body and Global Styles */
+        body {
+            font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+            background-color: #000000;
+            color: #f0f0f0;
+            line-height: 1.6;
+            padding-top: 60px; /* Add padding to body to prevent content from going under fixed header */
+        }
 
-a {
-    text-decoration: none;
-    color: inherit;
-    transition: all 0.3s ease;
-}
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
 
-ul {
-    list-style-type: none;
-}
+        ul {
+            list-style-type: none;
+        }
 
-h1, h2, h3, h4, h5, h6 {
-    font-weight: 700;
-    line-height: 1.2;
-}
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            line-height: 1.2;
+        }
 
-img {
-    max-width: 100%;
-    display: block;
-}
+        img {
+            max-width: 100%;
+            display: block;
+        }
 
-/* Section Styles */
-section {
-    padding: 80px 20px;
-    text-align: center;
-    position: relative;
-}
+        /* About Section */
+        #about {
+            background-color: #000000;
+            padding: 50px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Full viewport height */
+        }
 
-section h2 {
-    font-size: 2.5em;
-    margin-bottom: 30px;
-    position: relative;
-    display: inline-block;
-    padding-bottom: 15px;
-}
+        .about-container {
+            background-color: #080808;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 0 30px 2px rgba(255, 85, 0, 0.7);
+            width: 90%;
+            max-width: 1200px;
+        }
 
-section h2::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 4px;
-    background: linear-gradient(90deg, #ff6347, #ff8c42);
-    border-radius: 2px;
-}
+        .about-container h2 {
+            font-size: 3em;
+            margin-bottom: 40px;
+            color: #ffffff;
+            text-align: center;
+            position: relative;
+        }
 
-.container {
-    width: 85%;
-    max-width: 1200px;
-    margin: 0 auto;
-}
+        .about-container h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6347, #ff8c42);
+            border-radius: 2px;
+        }
 
-/* New styles for About section layout */
-#about .about-content {
-    display: flex;
-    flex-direction: row; /* Default to row layout */
-    align-items: center;
-    gap: 50px; /* Space between image and text */
-    margin-top: 40px;
-    text-align: left; /* Align text to the left within its container */
-}
+        .about-content {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 60px;
+            margin-top: 40px;
+        }
 
-#about .about-image {
-    flex: 1; /* Takes up one part of the available space */
-    display: flex;
-    justify-content: center; /* Center image horizontally */
-    align-items: center; /* Center image vertically */
-}
+        .about-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-#about .about-image img {
-    width: 250px; /* Adjust size as needed */
-    height: 250px; /* Adjust size as needed */
-    border-radius: 50%; /* Make image circular */
-    object-fit: cover; /* Cover the area without distortion */
-    border: 5px solid #ff7700; /* Orange border */
-    box-shadow: 0 0 20px rgba(255, 119, 0, 0.6); /* Glow effect */
-    transition: transform 0.3s ease-in-out;
-}
+        .about-image img {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid #ff7700;
+            box-shadow: 0 0 40px rgba(255, 119, 0, 0.8);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
+        }
 
-#about .about-image img:hover {
-    transform: scale(1.05); /* Slightly enlarge on hover */
-}
+        .about-image img:hover {
+            transform: scale(1.08);
+            box-shadow: 0 0 60px rgba(255, 119, 0, 1);
+        }
 
-#about .about-text {
-    flex: 2; /* Takes up two parts of the available space */
-    color: #e0e0e0;
-}
+        .about-text {
+            flex: 2;
+            color: #e0e0e0;
+        }
 
-#about .about-text p {
-    font-size: 1.2em;
-    line-height: 1.8;
-    margin-bottom: 15px;
-}
+        .about-text p {
+            font-size: 1.3em;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            text-align: justify;
+        }
 
-/* Responsive Design for About Section */
-@media screen and (max-width: 768px) {
-    #about .about-content {
-        flex-direction: column; /* Stack columns vertically on smaller screens */
-        gap: 30px;
-        text-align: center; /* Center text for stacked layout */
-    }
+        .about-text p:first-child {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
 
-    #about .about-image img {
-        width: 200px;
-        height: 200px;
-    }
-}
+        /* Skills highlight */
+        .skills-highlight {
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 30px;
+            border-left: 5px solid #ff7700;
+        }
 
-@media screen and (max-width: 480px) {
-    #about .about-image img {
-        width: 180px;
-        height: 180px;
-    }
+        .skills-highlight h3 {
+            color: #ff7700;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
 
-    #about .about-text p {
-        font-size: 1em;
-    }
-}
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
 
+        .skill-tag {
+            background: linear-gradient(135deg, #ff7700, #ff5500);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
 
-/* Existing Responsive Design */
-@media screen and (max-width: 1024px) {
-    .container {
-        width: 90%;
-    }
-}
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            .about-container {
+                width: 95%;
+                padding: 30px;
+            }
 
-@media screen and (max-width: 768px) {
-    header h1 {
-        font-size: 2.5em;
-    }
-    
-    section h2 {
-        font-size: 2em;
-    }
-    
-    nav ul li {
-        margin: 0 10px;
-    }
-}
+            .about-content {
+                flex-direction: column;
+                gap: 40px;
+                text-align: center;
+            }
 
-@media screen and (max-width: 480px) {
-    header {
-        padding: 30px 0 15px;
-    }
-    
-    header h1 {
-        font-size: 2em;
-    }
-    
-    nav ul {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    nav ul li {
-        margin: 5px 0;
-    }
-    
-    section {
-        padding: 50px 15px;
-    }
-    
-    section h2 {
-        font-size: 1.8em;
-    }
-}
+            .about-container h2 {
+                font-size: 2.5em;
+            }
+
+            .about-image img {
+                width: 250px;
+                height: 250px;
+            }
+
+            .about-text p {
+                font-size: 1.1em;
+            }
+
+            .skills-list {
+                justify-content: center;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .about-container {
+                padding: 20px;
+            }
+
+            .about-container h2 {
+                font-size: 2em;
+            }
+
+            .about-image img {
+                width: 200px;
+                height: 200px;
+            }
+
+            .about-text p {
+                font-size: 1em;
+            }
+        }
     </style>
 </head>
 <body>
@@ -218,12 +239,16 @@ section h2::after {
             <div class="about-content">
                 <div class="about-image">
                     <!-- Placeholder image - replace with your actual image -->
-                    <img src="https://placehold.co/250x250/000/fff?text=Your+Image" alt="Your Profile Picture">
+                    <img src="https://placehold.co/300x300/000/fff?text=Your+Image" alt="Talla Vishnu Kranth Reddy" class="circular-image">
                 </div>
                 <div class="about-text">
-                    <p>Hello! I'm Talla Vishnu Kranth Reddy, a passionate and driven Software Developer with a strong focus on creating engaging and efficient web applications. My journey in technology began with a deep curiosity for how digital experiences are built, which quickly evolved into a dedication to crafting robust and user-friendly solutions.</p>
-                    <p>I specialize in full-stack web development, with expertise in both front-end technologies like HTML, CSS, and JavaScript, and back-end frameworks. I am constantly exploring new tools and methodologies to enhance my skills and deliver cutting-edge results. My goal is to develop applications that are not only functional and responsive but also provide an intuitive and delightful user experience.</p>
+                    <p>Hello! I'm Talla Vishnu Kranth Reddy, a passionate and driven Software Developer with a strong focus on creating engaging and efficient web applications.</p>
+                    <p>My journey in technology began with a deep curiosity for how digital experiences are built, which quickly evolved into a dedication to crafting robust and user-friendly solutions. I specialize in full-stack web development, with expertise in both front-end technologies like HTML, CSS, and JavaScript, and back-end frameworks.</p>
+                    <p>I am constantly exploring new tools and methodologies to enhance my skills and deliver cutting-edge results. My goal is to develop applications that are not only functional and responsive but also provide an intuitive and delightful user experience.</p>
                     
+                    
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -248,7 +273,7 @@ section h2::after {
                         <li><a href="about.html"><i class="fas fa-user"></i> About</a></li>
                         <li><a href="skills.html"><i class="fas fa-star"></i> Skills</a></li>
                         <li><a href="education.html"><i class="fas fa-graduation-cap"></i> Education</a></li>
-                        <li><a href="work.html"><i class="fas fa-briefcase"></i> Work</a></li>
+                        <li><a href="work.html"><i class="fas fa-briefcase"></i> Experience</a></li>
                         <li><a href="project.html"><i class="fas fa-code"></i> Projects</a></li>
                         <li><a href="contactus.html"><i class="fas fa-envelope"></i> Contact</a></li>
                     </ul>
@@ -299,6 +324,11 @@ section h2::after {
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" title="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="scripts.js"></script>
 </body>
 </html>

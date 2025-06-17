@@ -25,77 +25,35 @@ function checkDarkTheme() {
 // Run on page load
 checkDarkTheme();
 
-// Enhanced mobile-friendly tooltip handling
+// Mobile-friendly tooltip handling
 document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelectorAll('nav ul li a[data-tooltip]');
-    let currentActiveTooltip = null;
     
     // Function to detect if device supports hover
     function hasHoverSupport() {
         return window.matchMedia('(hover: hover)').matches;
     }
     
-    // Function to check if device is mobile
-    function isMobileDevice() {
-        return window.innerWidth <= 768 || 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    }
-    
-    // Function to handle tooltip positioning
-    function adjustTooltipPosition(link) {
-        const nav = document.querySelector('nav');
-        const navRect = nav.getBoundingClientRect();
-        const linkRect = link.getBoundingClientRect();
-        const tooltip = window.getComputedStyle(link, '::after');
-        
-        // Check if tooltip would overflow viewport
-        const linkCenter = linkRect.left + linkRect.width / 2;
-        const viewportWidth = window.innerWidth;
-        
-        // Adjust tooltip position classes
-        link.classList.remove('tooltip-left', 'tooltip-right', 'tooltip-center');
-        
-        if (linkCenter < 80) {
-            link.classList.add('tooltip-left');
-        } else if (linkCenter > viewportWidth - 80) {
-            link.classList.add('tooltip-right');
-        } else {
-            link.classList.add('tooltip-center');
-        }
-    }
-    
     // Function to handle mobile tooltip visibility
     function handleMobileTooltips() {
-        if (!hasHoverSupport() && isMobileDevice()) {
+        if (!hasHoverSupport()) {
             navLinks.forEach(link => {
                 // Add touch event listeners for better mobile experience
                 link.addEventListener('touchstart', function(e) {
-                    // Clear any existing active tooltips
-                    if (currentActiveTooltip && currentActiveTooltip !== this) {
-                        currentActiveTooltip.classList.remove('touch-active');
-                    }
-                    
                     // Add active class for touch state
                     this.classList.add('touch-active');
-                    currentActiveTooltip = this;
-                    
-                    // Adjust tooltip position
-                    adjustTooltipPosition(this);
                 }, { passive: true });
                 
                 link.addEventListener('touchend', function(e) {
                     // Remove active class after a delay
                     setTimeout(() => {
                         this.classList.remove('touch-active');
-                        if (currentActiveTooltip === this) {
-                            currentActiveTooltip = null;
-                        }
-                    }, 2500);
+                    }, 2000);
                 }, { passive: true });
                 
                 // Handle focus for keyboard navigation
                 link.addEventListener('focus', function() {
                     this.classList.add('tooltip-visible');
-                    adjustTooltipPosition(this);
                 });
                 
                 link.addEventListener('blur', function() {
@@ -105,25 +63,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Handle orientation changes
-    function handleOrientationChange() {
-        setTimeout(() => {
-            navLinks.forEach(link => {
-                adjustTooltipPosition(link);
-            });
-        }, 300);
-    }
-    
     // Initialize mobile tooltip handling
     handleMobileTooltips();
     
-    // Re-initialize on window resize and orientation change
-    window.addEventListener('resize', function() {
-        handleMobileTooltips();
-        handleOrientationChange();
-    });
-    
-    window.addEventListener('orientationchange', handleOrientationChange);
+    // Re-initialize on window resize (in case orientation changes)
+    window.addEventListener('resize', handleMobileTooltips);
 });
 
 // Enhanced mobile touch handling for navigation
@@ -158,69 +102,59 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!window.matchMedia('(hover: hover)').matches) {
         document.body.classList.add('no-hover');
         
-        // Alternative: Long press to show tooltip, tap to navigate
+        // Alternative: Click/tap to toggle tooltip visibility
         const navLinks = document.querySelectorAll('nav ul li a[data-tooltip]');
         navLinks.forEach(link => {
-            let touchTimeout;
-            let longPressTriggered = false;
+            let tooltipTimeout;
             
-            link.addEventListener('touchstart', function(e) {
-                longPressTriggered = false;
-                
-                // Long press to show tooltip
-                touchTimeout = setTimeout(() => {
-                    longPressTriggered = true;
-                    this.classList.add('show-tooltip');
-                    
-                    // Haptic feedback if available
-                    if (navigator.vibrate) {
-                        navigator.vibrate(50);
-                    }
-                    
-                    // Hide other tooltips
-                    navLinks.forEach(otherLink => {
-                        if (otherLink !== this) {
-                            otherLink.classList.remove('show-tooltip');
-                        }
-                    });
-                    
-                    // Auto-hide after 4 seconds
-                    setTimeout(() => {
-                        this.classList.remove('show-tooltip');
-                    }, 4000);
-                }, 500); // 500ms long press
-            }, { passive: true });
-            
-            link.addEventListener('touchend', function(e) {
-                clearTimeout(touchTimeout);
-                
-                // If it was a long press, prevent navigation
-                if (longPressTriggered) {
+            link.addEventListener('click', function(e) {
+                // Only prevent default if it's not navigating to a different page
+                if (this.getAttribute('href').startsWith('#')) {
                     e.preventDefault();
-                    return false;
                 }
-            }, { passive: false });
-            
-            link.addEventListener('touchmove', function(e) {
-                // Cancel long press if user moves finger
-                clearTimeout(touchTimeout);
-            }, { passive: true });
+                
+                // Toggle tooltip visibility
+                this.classList.toggle('show-tooltip');
+                
+                // Auto-hide after 3 seconds
+                clearTimeout(tooltipTimeout);
+                if (this.classList.contains('show-tooltip')) {
+                    tooltipTimeout = setTimeout(() => {
+                        this.classList.remove('show-tooltip');
+                    }, 3000);
+                }
+                
+                // Hide other tooltips
+                navLinks.forEach(otherLink => {
+                    if (otherLink !== this) {
+                        otherLink.classList.remove('show-tooltip');
+                    }
+                });
+            });
         });
     }
+});
+
+// Back to Top Button Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const backToTopButton = document.getElementById('backToTop');
     
-    // Handle viewport changes for better mobile support
-    function handleViewportChange() {
-        // Adjust navigation position if tooltips are getting cut off
-        const nav = document.querySelector('nav');
-        const navRect = nav.getBoundingClientRect();
-        
-        if (navRect.bottom > window.innerHeight - 50) {
-            nav.style.top = '10px';
-        }
+    if (backToTopButton) {
+        // Show/hide button based on scroll position
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+
+        // Scroll to top when button is clicked
+        backToTopButton.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
     }
-    
-    window.addEventListener('resize', handleViewportChange);
-    window.addEventListener('orientationchange', function() {
-        setTimeout(handleViewportChange, 300);
-    });
 });
