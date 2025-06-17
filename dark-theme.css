@@ -12,7 +12,15 @@ body {
             color: #f0f0f0;
             line-height: 1.6;
             padding-top: 60px; /* Add padding to body to prevent content from going under fixed header */
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
         }
+
+/* Mobile body adjustments */
+@media (max-width: 768px) {
+    body {
+        padding-top: 80px; /* Extra space for navigation with tooltips */
+    }
+}
 
 
 a {
@@ -35,7 +43,7 @@ img {
     display: block;
 }
 
-/* Header Styles */
+/* Header Styles - Updated for Horizontal Sidebar */
 header {
     padding: 20px 0;
     background: #000000;
@@ -44,15 +52,13 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1000; /* Ensure it stays on top */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+    z-index: 999; /* Lower than nav z-index */
     display: flex;
     justify-content: flex-end;
     align-items: center;
     padding-left: 20px;
     padding-right: 20px;
     flex-wrap: wrap;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 header::after {
@@ -67,6 +73,14 @@ header::after {
     padding: 0 8px;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
     animation: glowText 2s infinite alternate;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#role:hover {
+    color: #ff5500;
+    text-shadow: 0 0 20px rgba(255, 119, 0, 0.8), 0 0 30px rgba(255, 119, 0, 0.6);
+    transform: scale(1.05);
 }
 
 @keyframes glowText {
@@ -97,30 +111,63 @@ header::after {
     }
 }
 
-/* Navigation Menu */
+/* Horizontal Sidebar Navigation Menu */
 nav {
-    margin-top: 0;
-    padding: 0;
-    position: absolute;
+    position: fixed;
     top: 20px;
     right: 20px;
     z-index: 1000;
+    background-color: #000000;
+    border-radius: 30px;
+    padding: 12px 20px;
+    box-shadow: 0 8px 32px rgba(255, 119, 0, 0.3);
+    border: 2px solid rgba(255, 119, 0, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    pointer-events: auto; /* Ensure navigation is clickable */
+}
+
+/* Glowing effect animation */
+nav::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(45deg, #ff7700, #ff9933, #ff7700, #ff5500);
+    background-size: 400% 400%;
+    border-radius: 32px;
+    z-index: -1;
+    animation: glowingBorder 3s ease-in-out infinite;
+    opacity: 0.6;
+}
+
+@keyframes glowingBorder {
+    0%, 100% {
+        background-position: 0% 50%;
+        box-shadow: 0 0 20px rgba(255, 119, 0, 0.4);
+    }
+    50% {
+        background-position: 100% 50%;
+        box-shadow: 0 0 30px rgba(255, 119, 0, 0.6);
+    }
 }
 
 nav .container {
     display: flex;
-    justify-content: flex-end;
-    padding-right: 0;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
     width: auto;
     max-width: none;
 }
 
 nav ul {
     display: flex;
-    justify-content: flex-end;
-    flex-wrap: wrap;
-    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 15px;
     padding: 0;
+    margin: 0;
 }
 
 nav ul li {
@@ -129,40 +176,42 @@ nav ul li {
 }
 
 nav ul li a {
-    color: white;
+    color: #e0e0e0;
     text-decoration: none;
-    font-size: 1.2em;
-    font-weight: 600;
-    padding: 12px;
+    font-size: 1.1em;
+    font-weight: 500;
+    padding: 10px;
     position: relative;
-    display: inline-block;
-    background-color: #000000;
-    border-radius: 50%;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    overflow: visible;
-    width: 45px;
-    height: 45px;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 40px;
+    height: 40px;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    cursor: pointer;
+    pointer-events: auto;
 }
 
 /* Active page indicator */
 nav ul li a.active {
-    background-color: #000000;
-    box-shadow: 0 2px 10px rgba(255, 119, 0, 0.4);
-    border: 1px solid rgba(255, 119, 0, 0.4);
-    color: #ff7700;
+    background: linear-gradient(135deg, #ff7700, #ff5500);
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(255, 119, 0, 0.5);
+    border: 1px solid rgba(255, 119, 0, 0.6);
+    transform: scale(1.1);
 }
 
 nav ul li a:hover {
-    color: #fff;
-    background-color: #000000;
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(255, 119, 0, 0.6);
-    border: 1px solid rgba(255, 119, 0, 0.6);
+    color: #ffffff;
+    background: linear-gradient(135deg, #ff7700, #ff5500);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(255, 119, 0, 0.6);
+    border: 1px solid rgba(255, 119, 0, 0.8);
 }
 
 /* Background glow effect */
@@ -183,43 +232,63 @@ nav ul li a:hover .glow-bg {
     opacity: 1;
 }
 
-/* Tooltip Styles */
+/* Background glow effect */
+nav ul li a .glow-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(255, 119, 0, 0.1), rgba(255, 119, 0, 0.2));
+    border-radius: 50%;
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.3s ease;
+}
+
+nav ul li a:hover .glow-bg {
+    opacity: 1;
+}
+
+/* Tooltip Styles - Optimized for Horizontal Sidebar */
 nav ul li a::after {
     content: attr(data-tooltip);
     position: absolute;
-    bottom: -45px;
+    bottom: -50px;
     left: 50%;
     transform: translateX(-50%);
     background: linear-gradient(135deg, #ff7700, #ff9933);
     color: white;
-    padding: 8px 12px;
-    border-radius: 8px;
-    font-size: 0.85em;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 0.75em;
     font-weight: 500;
     white-space: nowrap;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 4px 15px rgba(255, 119, 0, 0.4);
     z-index: 1000;
     pointer-events: none;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 /* Tooltip arrow */
 nav ul li a::before {
     content: '';
     position: absolute;
-    bottom: -37px;
+    bottom: -42px;
     left: 50%;
     transform: translateX(-50%);
     width: 0;
     height: 0;
-    border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
-    border-bottom: 8px solid #ff7700;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 6px solid #ff7700;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1001;
     pointer-events: none;
 }
@@ -227,14 +296,387 @@ nav ul li a::before {
 nav ul li a:hover::after {
     opacity: 1;
     visibility: visible;
-    bottom: -50px;
+    bottom: -55px;
     box-shadow: 0 6px 20px rgba(255, 119, 0, 0.6);
 }
 
 nav ul li a:hover::before {
     opacity: 1;
     visibility: visible;
-    bottom: -42px;
+    bottom: -47px;
+}
+
+/* Mobile Touch Support for Tooltips */
+@media (max-width: 768px) {
+    /* Smart tooltip positioning for mobile */
+    nav ul li a::after {
+        content: attr(data-tooltip);
+        position: absolute;
+        bottom: -30px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(255, 119, 0, 0.95);
+        color: white;
+        padding: 4px 8px;
+        border-radius: 6px;
+        font-size: 0.7em;
+        font-weight: 500;
+        white-space: nowrap;
+        opacity: 1;
+        visibility: visible;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 3px 15px rgba(255, 119, 0, 0.5);
+        z-index: 9999;
+        pointer-events: none;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 119, 0, 0.3);
+        max-width: 80px;
+        text-align: center;
+        line-height: 1.2;
+    }
+    
+    /* Prevent tooltip overflow on small screens */
+    nav ul li:first-child a::after {
+        left: 0;
+        transform: translateX(0);
+    }
+    
+    nav ul li:last-child a::after {
+        left: auto;
+        right: 0;
+        transform: translateX(0);
+    }
+    
+    /* Remove arrow on mobile for cleaner look */
+    nav ul li a::before {
+        display: none;
+    }
+    
+    /* Adjust navigation spacing for mobile labels */
+    nav ul {
+        gap: 12px;
+        padding: 12px 8px;
+        padding-bottom: 40px; /* Extra space for tooltips */
+    }
+    
+    nav ul li {
+        margin-bottom: 8px;
+        position: relative;
+    }
+    
+    /* Enhance touch feedback */
+    nav ul li a:active::after {
+        transform: translateX(-50%) scale(1.1);
+        background: linear-gradient(135deg, #ff7700, #ff9933);
+        box-shadow: 0 4px 15px rgba(255, 119, 0, 0.6);
+    }
+    
+    /* Alternative touch interaction */
+    nav ul li a:active {
+        transform: scale(0.95);
+    }
+}
+
+/* For very small screens */
+@media (max-width: 480px) {
+    nav {
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        max-width: calc(100vw - 20px);
+    }
+    
+    nav ul li a::after {
+        font-size: 0.6em;
+        padding: 2px 6px;
+        bottom: -28px;
+        max-width: 70px;
+        font-weight: 600;
+    }
+    
+    nav ul {
+        gap: 8px;
+        padding-bottom: 35px;
+    }
+    
+    nav ul li a {
+        width: 32px;
+        height: 32px;
+        font-size: 0.9em;
+    }
+}
+
+/* Portrait orientation specific fixes */
+@media (max-width: 768px) and (orientation: portrait) {
+    nav {
+        position: fixed;
+        top: 10px;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        width: auto;
+        max-width: 90vw;
+    }
+    
+    nav ul {
+        justify-content: center;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: visible;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    
+    nav ul::-webkit-scrollbar {
+        display: none;
+    }
+    
+    /* Ensure tooltips don't get cut off */
+    nav ul li a::after {
+        z-index: 10000;
+        will-change: transform, opacity;
+    }
+}
+
+/* Landscape orientation on mobile */
+@media (max-width: 1024px) and (orientation: landscape) {
+    nav {
+        top: 8px;
+        right: 8px;
+        left: auto;
+        transform: none;
+    }
+    
+    nav ul li a::after {
+        bottom: -35px;
+        font-size: 0.65em;
+    }
+}
+
+/* Additional mobile support classes */
+.mobile-device nav ul li a.touch-active::after,
+.mobile-device nav ul li a.mobile-active::after,
+nav ul li a.tooltip-visible::after {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateX(-50%) scale(1.05);
+    background: linear-gradient(135deg, #ff7700, #ff9933);
+    box-shadow: 0 4px 15px rgba(255, 119, 0, 0.6);
+}
+
+.mobile-device nav ul li a.touch-active::before,
+.mobile-device nav ul li a.mobile-active::before,
+nav ul li a.tooltip-visible::before {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Tooltip positioning classes for better mobile UX */
+nav ul li a.tooltip-left::after {
+    left: 0 !important;
+    transform: translateX(0) !important;
+}
+
+nav ul li a.tooltip-right::after {
+    left: auto !important;
+    right: 0 !important;
+    transform: translateX(0) !important;
+}
+
+nav ul li a.tooltip-center::after {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+}
+
+/* Enhanced touch feedback */
+nav ul li a.touch-active {
+    transform: scale(1.1) !important;
+    background: linear-gradient(135deg, #ff7700, #ff5500) !important;
+    box-shadow: 0 8px 25px rgba(255, 119, 0, 0.7) !important;
+}
+
+nav ul li a.touch-active::after {
+    animation: tooltipBounce 0.4s ease-out;
+}
+
+@keyframes tooltipBounce {
+    0% {
+        transform: translateX(-50%) scale(0.8) translateY(10px);
+        opacity: 0;
+    }
+    60% {
+        transform: translateX(-50%) scale(1.1) translateY(-2px);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-50%) scale(1.05) translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Emergency mobile fixes for extreme cases */
+@media (max-width: 320px) {
+    nav {
+        left: 5px !important;
+        right: 5px !important;
+        top: 5px !important;
+        max-width: calc(100vw - 10px) !important;
+    }
+    
+    nav ul {
+        gap: 4px !important;
+        padding: 8px 4px !important;
+        padding-bottom: 30px !important;
+    }
+    
+    nav ul li a {
+        width: 28px !important;
+        height: 28px !important;
+        font-size: 0.8em !important;
+    }
+    
+    nav ul li a::after {
+        font-size: 0.55em !important;
+        padding: 1px 4px !important;
+        bottom: -25px !important;
+        max-width: 60px !important;
+    }
+}
+
+/* High DPI / Retina display improvements */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    nav ul li a::after {
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+    }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+    nav ul li a::after,
+    nav ul li a::before,
+    .tooltip-bounce {
+        animation: none !important;
+        transition: opacity 0.2s ease !important;
+    }
+}
+
+/* Force hardware acceleration for smoother animations */
+nav ul li a::after,
+nav ul li a::before {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+/* Improved hover support detection */
+@media (hover: none) {
+    /* This targets devices that don't support hover (primarily touch devices) */
+    nav ul li a::after {
+        content: attr(data-tooltip);
+        position: absolute;
+        bottom: -25px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(255, 119, 0, 0.9);
+        color: white;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 0.6em;
+        font-weight: 500;
+        white-space: nowrap;
+        opacity: 1;
+        visibility: visible;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 2px 8px rgba(255, 119, 0, 0.3);
+        z-index: 1000;
+        pointer-events: none;
+    }
+    
+    nav ul li a::before {
+        display: none;
+    }
+}
+
+/* Alternative approach - Show tooltips on click/tap for touch devices */
+@media (pointer: coarse) {
+    /* This targets devices with coarse pointers (touch) */
+    nav ul li a::after,
+    nav ul li a::before {
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    nav ul li a:active::after,
+    nav ul li a.active::after {
+        opacity: 1 !important;
+        visibility: visible !important;
+        bottom: -55px !important;
+        box-shadow: 0 6px 20px rgba(255, 119, 0, 0.6) !important;
+    }
+    
+    nav ul li a:active::before,
+    nav ul li a.active::before {
+        opacity: 1 !important;
+        visibility: visible !important;
+        bottom: -47px !important;
+    }
+}
+
+/* JavaScript-controlled tooltip visibility */
+.no-hover nav ul li a::after,
+.no-hover nav ul li a::before {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.no-hover nav ul li a.show-tooltip::after {
+    opacity: 1 !important;
+    visibility: visible !important;
+    bottom: -55px !important;
+    transform: translateX(-50%) scale(1.05);
+    background: linear-gradient(135deg, #ff7700, #ff9933);
+    box-shadow: 0 6px 20px rgba(255, 119, 0, 0.6) !important;
+    animation: tooltipPulse 0.3s ease-out;
+}
+
+.no-hover nav ul li a.show-tooltip::before {
+    opacity: 1 !important;
+    visibility: visible !important;
+    bottom: -47px !important;
+}
+
+/* Tooltip animation */
+@keyframes tooltipPulse {
+    0% {
+        transform: translateX(-50%) scale(0.8);
+        opacity: 0;
+    }
+    50% {
+        transform: translateX(-50%) scale(1.1);
+    }
+    100% {
+        transform: translateX(-50%) scale(1.05);
+        opacity: 1;
+    }
+}
+
+/* Navigation Animation */
+@keyframes navPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 119, 0, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 7px rgba(255, 119, 0, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 119, 0, 0);
+    }
 }
 
 /* Navigation Animation */
@@ -252,7 +694,64 @@ nav ul li a:hover::before {
 
 nav ul li a:active {
     animation: navPulse 0.8s ease-out;
-    transform: scale(0.98);
+    transform: scale(0.95);
+}
+
+/* Mobile Responsiveness for Horizontal Sidebar */
+@media (max-width: 768px) {
+    nav {
+        top: 15px;
+        right: 15px;
+        left: 15px;
+        padding: 8px 15px;
+        border-radius: 25px;
+        max-width: calc(100vw - 30px);
+        overflow-x: auto;
+        overflow-y: visible;
+    }
+    
+    nav ul {
+        gap: 8px;
+        justify-content: flex-start;
+        overflow-x: auto;
+        overflow-y: visible;
+        padding-bottom: 35px; /* Space for tooltips */
+        min-width: max-content;
+    }
+    
+    nav ul li a {
+        width: 35px;
+        height: 35px;
+        font-size: 1em;
+        padding: 8px;
+        flex-shrink: 0;
+    }
+    
+    /* Hide tooltips on mobile for better UX */
+    nav ul li a::after,
+    nav ul li a::before {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    nav {
+        top: 10px;
+        right: 10px;
+        padding: 6px 12px;
+        border-radius: 20px;
+    }
+    
+    nav ul {
+        gap: 8px;
+    }
+    
+    nav ul li a {
+        width: 32px;
+        height: 32px;
+        font-size: 0.9em;
+        padding: 6px;
+    }
 }
 
 /* Section Styles */
