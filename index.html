@@ -45,29 +45,34 @@
                 <p class="intro-text">
                     Explore my skills, education, work, and projects in detail. Want to know more about my journey? Download my resume to get a comprehensive overview!
                 </p>
-                <a href="resume.pdf" download="TallaVishnuKranthReddy_Resume.pdf" class="download-button">Download Resume <i class="fas fa-download"></i></a>
+                <a href="resume.pdf" download="TallaVishnuKranthReddy_Resume.pdf" class="download-button"><i class="fas fa-download"> </i>Download Resume </i></a>
             </div>
         </div>
     </section>
 
     <!-- About Section - Moved from about.html and integrated -->
-    <section id="about" class="home-section">
-        <div class="container">
-            <h2>About Me</h2>
-            <div class="about-content">
-                <div class="about-image">
-                    <!-- Placeholder image - replace with your actual image -->
-                    <img src="https://placehold.co/250x250/000/fff?text=Your+Image" alt="Talla Vishnu Kranth Reddy" class="circular-image">
-                </div>
-                <div class="about-text">
-                    <p>Hello! I'm Talla Vishnu Kranth Reddy, a passionate and driven Software Developer with a strong focus on creating engaging and efficient web applications. My journey in technology began with a deep curiosity for how digital experiences are built, which quickly evolved into a dedication to crafting robust and user-friendly solutions.</p>
-                    <p>I specialize in full-stack web development, with expertise in both front-end technologies like HTML, CSS, and JavaScript, and back-end frameworks. I am constantly exploring new tools and methodologies to enhance my skills and deliver cutting-edge results. My goal is to develop applications that are not only functional and responsive but also provide an intuitive and delightful user experience.</p>
-                    
-                    
+    <section id="about">
+    <div class="container">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <div class="about-image">
+                <!-- Placeholder image - replace with your actual image -->
+                <img src="https://placehold.co/300x300/000/fff?text=Your+Image" alt="Talla Vishnu Kranth Reddy" class="circular-image">
+            </div>
+            <div class="about-text">
+                <p>Hello! I'm Talla Vishnu Kranth Reddy, a 20-year-old student at the Indian Institute of Information Technology (IIIT), Raichur, pursuing Computer Science and Engineering (CSE) with an expected graduation in May 2026. I am passionate about enhancing my coding skills and solving real-world problems through innovative software solutions.</p>
+                <p>I specialize in full-stack web development and have hands-on experience in building responsive web applications using HTML, CSS, JavaScript, and various back-end frameworks. In addition, I actively explore the fields of Machine Learning and Data Analytics, allowing me to build intelligent, data-driven systems. I continuously strive to improve myself every day. With a strong inclination toward leadership and collaboration, I love building impactful solutions that address real-world challenges.</p>
+                
+                <!-- Contact Info -->
+                <div class="contact-info">
+                    <p><strong>📞 Mobile:</strong> +91 7997830784</p>
+                    <p><strong>📧 Email:</strong> vishnukranthreddy13698@gmail.com</p>
+                    <p><strong>📍 Location:</strong> Raichur, Karnataka, India – 584135</p>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Projects Section -->
     <section id="projects" class="home-section">
@@ -186,21 +191,49 @@
     </button>
 
     <script src="scripts.js"></script>
-    <script>
-        const roles = ["Data Analyst", "Web Developer", "Freelancer", "Problem Solver", "ML Enthusiast"];
-        let currentRoleIndex = 0;
-        const roleElement = document.getElementById("role");
-        
-        function changeRole() {
-            roleElement.style.animation = 'none';
-            roleElement.offsetHeight; // Trigger reflow
-            roleElement.style.animation = 'glassOut 1s ease-in-out forwards';
-            roleElement.textContent = roles[currentRoleIndex];
-            currentRoleIndex = (currentRoleIndex + 1) % roles.length;
+        <script>
+        const roles = ["Data Analyst", "Web Developer", "Software Engineer", "Problem Solver", "ML Enthusiast"];
+        let currentRole = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typeSpeed = 100;
+        const deleteSpeed = 50;
+        const pauseBetweenWords = 100;  
+        const pauseBeforeTyping = 300;   
+        const typewriter = document.getElementById("role");
+
+        function typeEffect() {
+            const currentText = roles[currentRole];
+
+            if (isDeleting) {
+                typewriter.textContent = currentText.substring(0, charIndex--);
+            } else {
+                typewriter.textContent = currentText.substring(0, charIndex++);
+            }
+
+            // If word is fully typed
+            if (!isDeleting && charIndex === currentText.length + 1) {
+                isDeleting = true;
+                setTimeout(typeEffect, pauseBetweenWords);  
+                return;
+            }
+
+            // If word is fully deleted
+            if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                currentRole = (currentRole + 1) % roles.length;
+                setTimeout(typeEffect, pauseBeforeTyping); 
+                return;
+            }
+
+            // Continue typing or deleting
+            const delay = isDeleting ? deleteSpeed : typeSpeed;
+            setTimeout(typeEffect, delay);
         }
-        
-        setInterval(changeRole, 3000);
-        changeRole(); // Initial call to display the first role
+
+        typeEffect();
     </script>
+
+
 </body>
 </html>

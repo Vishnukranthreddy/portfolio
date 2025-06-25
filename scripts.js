@@ -25,115 +25,6 @@ function checkDarkTheme() {
 // Run on page load
 checkDarkTheme();
 
-// Mobile-friendly tooltip handling
-document.addEventListener('DOMContentLoaded', function() {
-    const navLinks = document.querySelectorAll('nav ul li a[data-tooltip]');
-    
-    // Function to detect if device supports hover
-    function hasHoverSupport() {
-        return window.matchMedia('(hover: hover)').matches;
-    }
-    
-    // Function to handle mobile tooltip visibility
-    function handleMobileTooltips() {
-        if (!hasHoverSupport()) {
-            navLinks.forEach(link => {
-                // Add touch event listeners for better mobile experience
-                link.addEventListener('touchstart', function(e) {
-                    // Add active class for touch state
-                    this.classList.add('touch-active');
-                }, { passive: true });
-                
-                link.addEventListener('touchend', function(e) {
-                    // Remove active class after a delay
-                    setTimeout(() => {
-                        this.classList.remove('touch-active');
-                    }, 2000);
-                }, { passive: true });
-                
-                // Handle focus for keyboard navigation
-                link.addEventListener('focus', function() {
-                    this.classList.add('tooltip-visible');
-                });
-                
-                link.addEventListener('blur', function() {
-                    this.classList.remove('tooltip-visible');
-                });
-            });
-        }
-    }
-    
-    // Initialize mobile tooltip handling
-    handleMobileTooltips();
-    
-    // Re-initialize on window resize (in case orientation changes)
-    window.addEventListener('resize', handleMobileTooltips);
-});
-
-// Enhanced mobile touch handling for navigation
-document.addEventListener('DOMContentLoaded', function() {
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    
-    if (isMobile || isTouchDevice) {
-        // Add mobile-specific class to body for CSS targeting
-        document.body.classList.add('mobile-device');
-        
-        // Handle navigation link touches
-        const navLinks = document.querySelectorAll('nav ul li a');
-        navLinks.forEach(link => {
-            link.addEventListener('touchstart', function(e) {
-                // Clear any existing active states
-                navLinks.forEach(l => l.classList.remove('mobile-active'));
-                // Add active state to current link
-                this.classList.add('mobile-active');
-            }, { passive: true });
-            
-            // Optional: Remove active state after navigation
-            link.addEventListener('click', function() {
-                setTimeout(() => {
-                    this.classList.remove('mobile-active');
-                }, 300);
-            });
-        });
-    }
-    
-    // Fallback for devices that don't support hover properly
-    if (!window.matchMedia('(hover: hover)').matches) {
-        document.body.classList.add('no-hover');
-        
-        // Alternative: Click/tap to toggle tooltip visibility
-        const navLinks = document.querySelectorAll('nav ul li a[data-tooltip]');
-        navLinks.forEach(link => {
-            let tooltipTimeout;
-            
-            link.addEventListener('click', function(e) {
-                // Only prevent default if it's not navigating to a different page
-                if (this.getAttribute('href').startsWith('#')) {
-                    e.preventDefault();
-                }
-                
-                // Toggle tooltip visibility
-                this.classList.toggle('show-tooltip');
-                
-                // Auto-hide after 3 seconds
-                clearTimeout(tooltipTimeout);
-                if (this.classList.contains('show-tooltip')) {
-                    tooltipTimeout = setTimeout(() => {
-                        this.classList.remove('show-tooltip');
-                    }, 3000);
-                }
-                
-                // Hide other tooltips
-                navLinks.forEach(otherLink => {
-                    if (otherLink !== this) {
-                        otherLink.classList.remove('show-tooltip');
-                    }
-                });
-            });
-        });
-    }
-});
 
 // Back to Top Button Functionality
 document.addEventListener('DOMContentLoaded', function() {
@@ -157,4 +48,139 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
+    
+    // Enhanced Mobile Tooltip Functionality
+    initializeMobileTooltips();
 });
+
+// Mobile Tooltip Enhancement
+function initializeMobileTooltips() {
+    const navLinks = document.querySelectorAll('nav ul li a[data-tooltip]');
+    let activeTooltip = null;
+    let tooltipTimeout;
+    
+    // Detect if device supports touch
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    
+    if (isTouchDevice) {
+        // Add touch event listeners for mobile devices
+        navLinks.forEach(link => {
+            // Touch start - show tooltip
+            link.addEventListener('touchstart', function(e) {
+                e.preventDefault(); // Prevent default touch behavior
+                
+                // Clear any existing timeout
+                clearTimeout(tooltipTimeout);
+                
+                // Hide any currently active tooltip
+                if (activeTooltip && activeTooltip !== this) {
+                    activeTooltip.classList.remove('show-mobile-tooltip', 'touch-active');
+                }
+                
+                // Show current tooltip
+                this.classList.add('show-mobile-tooltip', 'touch-active');
+                activeTooltip = this;
+                
+                // Auto-hide tooltip after 2 seconds
+                tooltipTimeout = setTimeout(() => {
+                    this.classList.remove('show-mobile-tooltip', 'touch-active');
+                    if (activeTooltip === this) {
+                        activeTooltip = null;
+                    }
+                }, 2000);
+            });
+            
+            // Touch end - navigate to link
+            link.addEventListener('touchend', function(e) {
+                e.preventDefault();
+                
+                // Small delay to allow tooltip to be seen
+                setTimeout(() => {
+                    if (this.href && this.href !== '#') {
+                        window.location.href = this.href;
+                    }
+                }, 300);
+            });
+            
+            // Long press support (for better UX)
+            let longPressTimeout;
+            link.addEventListener('touchstart', function(e) {
+                longPressTimeout = setTimeout(() => {
+                    // Show tooltip on long press
+                    this.classList.add('show-mobile-tooltip', 'touch-active');
+                    activeTooltip = this;
+                    
+                    // Vibrate if supported (subtle feedback)
+                    if (navigator.vibrate) {
+                        navigator.vibrate(50);
+                    }
+                }, 500);
+            });
+            
+            link.addEventListener('touchend', function() {
+                clearTimeout(longPressTimeout);
+            });
+            
+            link.addEventListener('touchcancel', function() {
+                clearTimeout(longPressTimeout);
+            });
+        });
+        
+        // Hide tooltip when touching outside
+        document.addEventListener('touchstart', function(e) {
+            if (!e.target.closest('nav ul li a[data-tooltip]')) {
+                if (activeTooltip) {
+                    activeTooltip.classList.remove('show-mobile-tooltip', 'touch-active');
+                    activeTooltip = null;
+                }
+                clearTimeout(tooltipTimeout);
+            }
+        });
+    }
+    
+    // Enhanced keyboard navigation support
+    navLinks.forEach(link => {
+        link.addEventListener('focus', function() {
+            this.classList.add('show-mobile-tooltip');
+        });
+        
+        link.addEventListener('blur', function() {
+            this.classList.remove('show-mobile-tooltip');
+        });
+        
+        link.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                this.classList.add('show-mobile-tooltip');
+                setTimeout(() => {
+                    this.classList.remove('show-mobile-tooltip');
+                }, 1500);
+            }
+        });
+    });
+}
+
+// Responsive tooltip positioning for different screen orientations
+function adjustTooltipPosition() {
+    const navLinks = document.querySelectorAll('nav ul li a[data-tooltip]');
+    const isLandscape = window.orientation === 90 || window.orientation === -90;
+    const isShortScreen = window.innerHeight < 500;
+    
+    navLinks.forEach(link => {
+        if (isLandscape && isShortScreen) {
+            link.style.setProperty('--tooltip-position', 'side');
+        } else {
+            link.style.setProperty('--tooltip-position', 'bottom');
+        }
+    });
+}
+
+// Listen for orientation changes
+window.addEventListener('orientationchange', function() {
+    setTimeout(adjustTooltipPosition, 100);
+});
+
+// Listen for resize events
+window.addEventListener('resize', adjustTooltipPosition);
+
+// Initialize on load
+window.addEventListener('load', adjustTooltipPosition);

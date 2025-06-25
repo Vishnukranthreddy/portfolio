@@ -358,10 +358,33 @@ nav ul li a:hover::before {
         font-size: 0.55em;
         padding: 1px 4px;
         bottom: -22px;
+        max-width: 80px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
     
     nav ul {
         gap: 12px;
+    }
+    
+    /* Enhanced touch targets for small screens */
+    nav ul li a {
+        width: 38px;
+        height: 38px;
+        font-size: 1.1em;
+        padding: 10px;
+        margin: 2px;
+    }
+    
+    /* Better spacing for tooltips on small screens */
+    nav ul li a:active::after,
+    nav ul li a.show-mobile-tooltip::after {
+        bottom: -24px !important;
+        font-size: 0.6em !important;
+        padding: 2px 6px !important;
+        border-radius: 3px;
+        max-width: 90px;
     }
 }
 
@@ -477,6 +500,129 @@ nav ul li a.tooltip-visible::before {
     }
 }
 
+@keyframes tooltipFadeIn {
+    0% {
+        transform: translateX(-50%) scale(0.8);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(-50%) scale(1);
+        opacity: 1;
+    }
+}
+
+/* Portrait orientation and short screens support */
+@media screen and (orientation: portrait), screen and (max-height: 600px) {
+    nav ul li a::after {
+        bottom: -20px !important;
+        font-size: 0.6em !important;
+        padding: 2px 6px !important;
+        white-space: nowrap;
+        max-width: 120px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    /* For very short screens, position tooltips to the side */
+    @media (max-height: 480px) {
+        nav ul li a::after {
+            bottom: auto !important;
+            top: 50% !important;
+            left: -80px !important;
+            transform: translateY(-50%) !important;
+            white-space: nowrap;
+        }
+        
+        nav ul li a:active::after,
+        nav ul li a:focus::after,
+        nav ul li a.show-mobile-tooltip::after {
+            transform: translateY(-50%) scale(1.05) !important;
+        }
+    }
+}
+
+/* Enhanced support for devices with coarse pointers (touch) */
+@media (pointer: coarse) and (max-width: 768px) {
+    nav ul li a::after {
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        bottom: -25px;
+        font-size: 0.65em;
+        padding: 4px 8px;
+        border-radius: 4px;
+        transform: translateX(-50%) scale(0.9);
+        background: rgba(255, 119, 0, 0.95);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+    }
+    
+    /* Show tooltip on touch interactions */
+    nav ul li a:active::after,
+    nav ul li a.touch-active::after {
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: translateX(-50%) scale(1) !important;
+        animation: tooltipFadeIn 0.3s ease-out;
+    }
+}
+
+/* Fallback for older mobile browsers */
+@media screen and (max-width: 768px) and (-webkit-min-device-pixel-ratio: 1) {
+    .mobile-tooltip-visible nav ul li a::after {
+        opacity: 1 !important;
+        visibility: visible !important;
+        background: linear-gradient(135deg, #ff7700, #ff9933) !important;
+        color: white !important;
+        font-weight: 600;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 
+            0 4px 15px rgba(255, 119, 0, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+    }
+}
+
+/* iOS Safari specific fixes */
+@supports (-webkit-touch-callout: none) {
+    nav ul li a:active::after {
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: translateX(-50%) scale(1.02) !important;
+        transition: all 0.2s ease-out;
+    }
+    
+    /* Better touch targets for iOS */
+    nav ul li a {
+        -webkit-tap-highlight-color: rgba(255, 119, 0, 0.2);
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+}
+
+/* Landscape orientation on mobile devices */
+@media screen and (orientation: landscape) and (max-height: 500px) {
+    nav ul li a::after {
+        bottom: auto !important;
+        top: 50% !important;
+        left: -90px !important;
+        transform: translateY(-50%) !important;
+        font-size: 0.6em !important;
+        padding: 3px 6px !important;
+        border-radius: 3px;
+        max-width: 100px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    nav ul li a:active::after,
+    nav ul li a:focus::after,
+    nav ul li a.show-mobile-tooltip::after {
+        transform: translateY(-50%) scale(1.05) !important;
+    }
+}
+
 /* Navigation Animation */
 @keyframes navPulse {
     0% {
@@ -528,10 +674,32 @@ nav ul li a:active {
         padding: 8px;
     }
     
-    /* Hide tooltips on mobile for better UX */
-    nav ul li a::after,
+    /* Enhanced mobile tooltips - show on tap/active */
+    nav ul li a::after {
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        bottom: -25px;
+        font-size: 0.65em;
+        padding: 4px 8px;
+        border-radius: 4px;
+        transform: translateX(-50%) scale(0.9);
+    }
+    
     nav ul li a::before {
-        display: none;
+        display: none; /* Remove arrow on small screens for cleaner look */
+    }
+    
+    /* Show tooltip on active/focus for touch devices */
+    nav ul li a:active::after,
+    nav ul li a:focus::after,
+    nav ul li a.show-mobile-tooltip::after {
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: translateX(-50%) scale(1) !important;
+        background: linear-gradient(135deg, #ff7700, #ff9933) !important;
+        box-shadow: 0 4px 15px rgba(255, 119, 0, 0.6) !important;
+        animation: tooltipFadeIn 0.3s ease-out;
     }
 }
 
